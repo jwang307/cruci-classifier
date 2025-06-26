@@ -1,0 +1,45 @@
+wandb_version: 1
+
+train_csv:
+  desc: null
+  value: /home/jwang/dna-gen/crucis/data/train.csv
+test_csv:
+  desc: null
+  value: /home/jwang/dna-gen/crucis/data/test.csv
+batch_size:
+  desc: null
+  value: 8
+lr:
+  desc: null
+  value: 0.001
+epochs:
+  desc: null
+  value: 10
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.5
+    cli_version: 0.17.7
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1748584873
+    t:
+      1:
+      - 1
+      - 5
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 53
+      - 55
+      3:
+      - 16
+      - 23
+      4: 3.11.5
+      5: 0.17.7
+      8:
+      - 5
+      13: linux-x86_64

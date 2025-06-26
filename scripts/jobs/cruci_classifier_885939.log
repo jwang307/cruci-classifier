@@ -1,0 +1,17 @@
+Epoch 1 | loss 0.5216 | val_f1 0.000
+Epoch 2 | loss 0.4487 | val_f1 0.337
+Epoch 3 | loss 0.3987 | val_f1 0.519
+Epoch 4 | loss 0.3673 | val_f1 0.545
+Epoch 5 | loss 0.3441 | val_f1 0.661
+Epoch 6 | loss 0.3254 | val_f1 0.733
+Epoch 7 | loss 0.3119 | val_f1 0.738
+Epoch 8 | loss 0.2998 | val_f1 0.738
+Epoch 9 | loss 0.2892 | val_f1 0.737
+Epoch 10 | loss 0.2815 | val_f1 0.729
+
+TEST METRICS
+acc       : 0.7689
+precision : 0.9613
+recall    : 0.5560
+f1        : 0.7045
+auroc     : 0.9305

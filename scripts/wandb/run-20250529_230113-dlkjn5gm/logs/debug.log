@@ -1,0 +1,29 @@
+2025-05-29 23:01:13,500 INFO    MainThread:900676 [wandb_setup.py:_flush():76] Current SDK version is 0.17.7
+2025-05-29 23:01:13,500 INFO    MainThread:900676 [wandb_setup.py:_flush():76] Configure stats pid to 900676
+2025-05-29 23:01:13,500 INFO    MainThread:900676 [wandb_setup.py:_flush():76] Loading settings from /home/jwang/.config/wandb/settings
+2025-05-29 23:01:13,500 INFO    MainThread:900676 [wandb_setup.py:_flush():76] Loading settings from /home/jwang/dna-gen/crucis/scripts/wandb/settings
+2025-05-29 23:01:13,500 INFO    MainThread:900676 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2025-05-29 23:01:13,501 INFO    MainThread:900676 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2025-05-29 23:01:13,501 INFO    MainThread:900676 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'crucis/classifier/train.py', 'program_abspath': '/home/jwang/dna-gen/crucis/classifier/train.py', 'program': '/home/jwang/dna-gen/crucis/classifier/train.py'}
+2025-05-29 23:01:13,502 INFO    MainThread:900676 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-05-29 23:01:13,506 INFO    MainThread:900676 [wandb_init.py:_log_setup():524] Logging user logs to /home/jwang/dna-gen/crucis/scripts/wandb/run-20250529_230113-dlkjn5gm/logs/debug.log
+2025-05-29 23:01:13,507 INFO    MainThread:900676 [wandb_init.py:_log_setup():525] Logging internal logs to /home/jwang/dna-gen/crucis/scripts/wandb/run-20250529_230113-dlkjn5gm/logs/debug-internal.log
+2025-05-29 23:01:13,507 INFO    MainThread:900676 [wandb_init.py:init():607] calling init triggers
+2025-05-29 23:01:13,508 INFO    MainThread:900676 [wandb_init.py:init():614] wandb.init called with sweep_config: {}
+config: {'train_csv': '/home/jwang/dna-gen/crucis/data/train.csv', 'test_csv': '/home/jwang/dna-gen/crucis/data/test.csv', 'batch_size': 8, 'lr': 0.001, 'epochs': 10}
+2025-05-29 23:01:13,508 INFO    MainThread:900676 [wandb_init.py:init():657] starting backend
+2025-05-29 23:01:13,509 INFO    MainThread:900676 [wandb_init.py:init():661] setting up manager
+2025-05-29 23:01:13,515 INFO    MainThread:900676 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-05-29 23:01:13,517 INFO    MainThread:900676 [wandb_init.py:init():669] backend started and connected
+2025-05-29 23:01:13,523 INFO    MainThread:900676 [wandb_init.py:init():764] updated telemetry
+2025-05-29 23:01:13,533 INFO    MainThread:900676 [wandb_init.py:init():797] communicating run to backend with 90.0 second timeout
+2025-05-29 23:01:13,816 INFO    MainThread:900676 [wandb_run.py:_on_init():2479] communicating current version
+2025-05-29 23:01:13,904 INFO    MainThread:900676 [wandb_run.py:_on_init():2488] got version response upgrade_message: "wandb version 0.19.11 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2025-05-29 23:01:13,904 INFO    MainThread:900676 [wandb_init.py:init():848] starting run threads in backend
+2025-05-29 23:01:17,373 INFO    MainThread:900676 [wandb_run.py:_console_start():2457] atexit reg
+2025-05-29 23:01:17,373 INFO    MainThread:900676 [wandb_run.py:_redirect():2303] redirect: wrap_raw
+2025-05-29 23:01:17,373 INFO    MainThread:900676 [wandb_run.py:_redirect():2368] Wrapping output streams.
+2025-05-29 23:01:17,373 INFO    MainThread:900676 [wandb_run.py:_redirect():2393] Redirects installed.
+2025-05-29 23:01:17,377 INFO    MainThread:900676 [wandb_init.py:init():891] run started, returning control to user process
+2025-05-29 23:01:23,537 WARNING MsgRouterThr:900676 [router.py:message_loop():77] message_loop has been closed
