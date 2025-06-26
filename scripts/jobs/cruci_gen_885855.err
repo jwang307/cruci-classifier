@@ -1,9 +1,0 @@
-Traceback (most recent call last):
-  File "/home/jwang/dna-gen/crucis/scripts/generate_cruci_seqs.py", line 20, in <module>
-    from eval.models import load_model
-  File "/home/haoyu/dna-gen/eval/models.py", line 13, in <module>
-    import torch
-  File "/home/jwang/miniconda/envs/evo2/lib/python3.11/site-packages/torch/__init__.py", line 367, in <module>
-    from torch._C import *  # noqa: F403
-    ^^^^^^^^^^^^^^^^^^^^^^
-ImportError: /home/jwang/miniconda/envs/evo2/lib/python3.11/site-packages/torch/lib/../../nvidia/cusparse/lib/libcusparse.so.12: undefined symbol: __nvJitLinkComplete_12_4, version libnvJitLink.so.12
