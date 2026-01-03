@@ -3,7 +3,7 @@
 #SBATCH --output=jobs/cruci_classifier_%j.log
 #SBATCH --error=jobs/cruci_classifier_%j.err
 #SBATCH --time=24:00:00  
-#SBATCH --partition=evo_gpu_priority
+#SBATCH --partition=preemptible,evo_gpu_priority
 #SBATCH --ntasks=1                                          
 #SBATCH --gres=gpu:1               
 #SBATCH --mem=80G   
