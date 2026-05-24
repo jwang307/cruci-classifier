@@ -297,6 +297,7 @@ def main(args: argparse.Namespace) -> None:
         })
         print(
             f"Epoch {epoch} | steps {global_step} | loss {epoch_loss:.4f} | "
+            f"val_n {metrics['n']} | val_pos/neg {metrics['positives']}/{metrics['negatives']} | "
             f"val_f1 {_format_metric(metrics['f1'])} | "
             f"val_bal_acc {_format_metric(metrics['balanced_acc'])} | "
             f"val_auroc {_format_metric(metrics['auroc'])}"
