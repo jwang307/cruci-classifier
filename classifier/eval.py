@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Evaluate a trained ESM-2 classifier on a labelled sequence dataset."""
 import argparse
+import math
 from pathlib import Path
 from typing import Dict, Union
 
@@ -10,97 +11,117 @@ import pandas as pd
 import torch
 from sklearn.metrics import (
     ConfusionMatrixDisplay,
-    average_precision_score,
     precision_recall_curve,
 )
 from torch.utils.data import DataLoader
 
 from train import ESMClassifier, SeqDataset, eval_epoch
+from train import _format_metric, resolve_device
 
 
 def main(args: argparse.Namespace) -> None:
     """Load a checkpoint, run evaluation, and export detailed outputs."""
-    device: Union[str, torch.device] = "cuda" if torch.cuda.is_available() else "cpu"
+    device: Union[str, torch.device] = resolve_device(args.device)
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
     model = ESMClassifier().to(device)
     state: Dict[str, torch.Tensor] = torch.load(args.checkpoint, map_location=device)
     model.load_state_dict(state)
     test_name = Path(args.csv).stem
 
-    dataset = SeqDataset(args.csv, model.alphabet)
+    dataset = SeqDataset(
+        args.csv,
+        model.alphabet,
+        clean_sequences=not args.no_clean_sequences,
+        stop_action=args.stop_action,
+        invalid_action=args.invalid_action,
+    )
     loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False, collate_fn=dataset.collate_fn)
-    metrics, details = eval_epoch(model, loader, device, return_details=True)
+    metrics, details = eval_epoch(model, loader, device, threshold=args.threshold, return_details=True)
 
     labels = details["labels"].astype(int)
     scores = details["probs"]
     preds = details["preds"]
     df = pd.DataFrame({
+        "id": dataset.ids,
         "sequence": dataset.seqs,
         "label": labels,
         "score": scores,
         "prediction": preds,
         "correct": preds == labels,
     })
-    df.to_csv(f"{test_name}_eval_results.csv", index=False)
+    df.to_csv(out_dir / f"{test_name}_eval_results.csv", index=False)
 
     display = ConfusionMatrixDisplay.from_predictions(labels, preds, cmap="Blues", colorbar=False)
     display.ax_.set_title(f"Confusion Matrix for {test_name}")
-    display.figure_.savefig(f"{test_name}_confusion_matrix.png", bbox_inches="tight")
+    display.figure_.savefig(out_dir / f"{test_name}_confusion_matrix.png", bbox_inches="tight")
     plt.close(display.figure_)
 
-    precision, recall, thresholds = precision_recall_curve(labels, scores)
-    f1_scores = np.where(precision + recall > 0, 2 * precision * recall / (precision + recall), 0.0)
-    if thresholds.size > 0:
-        best_idx = int(np.nanargmax(f1_scores[1:]) + 1)
-        best_threshold = float(thresholds[best_idx - 1])
-        pr_df = pd.DataFrame({
-            "threshold": thresholds,
-            "precision": precision[1:],
-            "recall": recall[1:],
-            "f1": f1_scores[1:],
-        })
-    else:
+    if np.unique(labels).size < 2 or labels.sum() == 0:
         best_threshold = 0.5
         pr_df = pd.DataFrame(columns=["threshold", "precision", "recall", "f1"])
-    pr_df.to_csv(f"{test_name}_precision_recall_curve.csv", index=False)
+        plt.figure()
+        plt.text(0.5, 0.5, "PR curve undefined for single-class labels", ha="center", va="center")
+        plt.axis("off")
+        plt.savefig(out_dir / f"{test_name}_precision_recall_curve.png", bbox_inches="tight")
+        plt.close()
+    else:
+        precision, recall, thresholds = precision_recall_curve(labels, scores)
+        f1_scores = np.where(precision + recall > 0, 2 * precision * recall / (precision + recall), 0.0)
+        if thresholds.size > 0:
+            best_idx = int(np.nanargmax(f1_scores[1:]) + 1)
+            best_threshold = float(thresholds[best_idx - 1])
+            pr_df = pd.DataFrame({
+                "threshold": thresholds,
+                "precision": precision[1:],
+                "recall": recall[1:],
+                "f1": f1_scores[1:],
+            })
+        else:
+            best_threshold = 0.5
+            pr_df = pd.DataFrame(columns=["threshold", "precision", "recall", "f1"])
+        plt.figure()
+        plt.plot(recall, precision, marker=".", linewidth=1.0)
+        plt.xlabel("Recall")
+        plt.ylabel("Precision")
+        plt.title(f"Precision-Recall Curve for {test_name}")
+        plt.grid(True, linestyle="--", linewidth=0.5)
+        plt.savefig(out_dir / f"{test_name}_precision_recall_curve.png", bbox_inches="tight")
+        plt.close()
+    pr_df.to_csv(out_dir / f"{test_name}_precision_recall_curve.csv", index=False)
 
     plt.figure()
-    plt.plot(recall, precision, marker=".", linewidth=1.0)
-    plt.xlabel("Recall")
-    plt.ylabel("Precision")
-    plt.title(f"Precision-Recall Curve for {test_name}")
-    plt.grid(True, linestyle="--", linewidth=0.5)
-    plt.savefig(f"{test_name}_precision_recall_curve.png", bbox_inches="tight")
-    plt.close()
-
-    plt.figure()
-    plt.hist(
-        scores[labels == 1],
-        bins=args.hist_bins,
-        alpha=0.6,
-        density=True,
-        label="Positive",
-        color="tab:orange",
-    )
-    plt.hist(
-        scores[labels == 0],
-        bins=args.hist_bins,
-        alpha=0.6,
-        density=True,
-        label="Negative",
-        color="tab:blue",
-    )
+    if np.any(labels == 1):
+        plt.hist(
+            scores[labels == 1],
+            bins=args.hist_bins,
+            alpha=0.6,
+            density=True,
+            label="Positive",
+            color="tab:orange",
+        )
+    if np.any(labels == 0):
+        plt.hist(
+            scores[labels == 0],
+            bins=args.hist_bins,
+            alpha=0.6,
+            density=True,
+            label="Negative",
+            color="tab:blue",
+        )
     plt.axvline(best_threshold, color="black", linestyle="--", linewidth=1.2, label="Best F1 threshold")
     plt.xlabel("Classifier score")
     plt.ylabel("Density")
     plt.title(f"Score Distribution by Class for {test_name}")
     plt.legend()
-    plt.savefig(f"{test_name}_score_histogram.png", bbox_inches="tight")
+    plt.savefig(out_dir / f"{test_name}_score_histogram.png", bbox_inches="tight")
     plt.close()
 
     print("EVALUATION METRICS")
     for key, value in metrics.items():
-        print(f"{key:10s}: {value:.4f}")
-    print(f"avg_precision: {average_precision_score(labels, scores):.4f}")
+        print(f"{key:20s}: {_format_metric(value)}")
+    avg_precision = metrics.get("average_precision", math.nan)
+    print(f"avg_precision      : {_format_metric(avg_precision)}")
     print(f"best_threshold (max F1): {best_threshold:.4f}")
 
 
@@ -110,4 +131,10 @@ if __name__ == "__main__":
     parser.add_argument("--checkpoint", type=str, default="/large_storage/hielab/jwang/cruci/best.pt")
     parser.add_argument("--batch_size", type=int, default=4)
     parser.add_argument("--hist_bins", type=int, default=30)
+    parser.add_argument("--out_dir", type=str, default=".")
+    parser.add_argument("--device", type=str, default="auto", help="auto, cpu, cuda, cuda:0, or mps")
+    parser.add_argument("--threshold", type=float, default=0.5)
+    parser.add_argument("--stop_action", choices=["remove", "replace_x", "error"], default="remove")
+    parser.add_argument("--invalid_action", choices=["replace_x", "remove", "error"], default="replace_x")
+    parser.add_argument("--no_clean_sequences", action="store_true")
     main(parser.parse_args())

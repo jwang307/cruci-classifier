@@ -8,5 +8,11 @@
 #SBATCH --gres=gpu:1               
 #SBATCH --mem=80G   
 
-python /home/jwang/dna-gen/crucis/classifier/eval.py \
-    --csv /home/jwang/dna-gen/crucis/data/test.csv
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+mkdir -p "$ROOT/scripts/jobs" "$ROOT/results/classifier"
+
+python "$ROOT/classifier/eval.py" \
+    --csv "$ROOT/data/test.csv" \
+    --checkpoint "$ROOT/results/classifier/checkpoints/best.pt" \
+    --out_dir "$ROOT/results/classifier" \
+    --device auto

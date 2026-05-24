@@ -10,14 +10,10 @@ from typing import List, Union, NamedTuple, Optional
 import logging
 import uuid
 import csv
-import os
 import argparse
-from Bio.Seq import Seq
-import numpy as np
 
 # from stripedhyena.model import StripedHyena
 # from stripedhyena.tokenizer import CharLevelTokenizer
-from eval.models import load_model
 
 # Set up logging
 logging.basicConfig(
@@ -85,6 +81,8 @@ def read_prompts_from_file(input_file: Path, percent: Optional[float] = None, le
 
 def model_load(model_name: str) -> tuple:
     """Load the model and tokenizer."""
+    from eval.models import load_model
+
     evo_model = load_model(model_name)
     return evo_model.model, evo_model.tokenizer
 
@@ -157,9 +155,12 @@ def save_sequences_fasta(sequences: List[str], scores: List[float], output_file:
 def save_sequences_csv(prompts: List[str],sequences: List[str], scores: List[float], output_file: str, prompt_file: Optional[str] = None, hyperparameters: Optional[dict] = None):
     """Save generated sequences, their scores, prompt file name, and hyperparameters to a CSV file."""
 
+    output_path = Path(output_file)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    write_header = not output_path.exists() or output_path.stat().st_size == 0
     with open(output_file, 'a', newline='') as f:
         writer = csv.writer(f)
-        if not os.path.exists(output_file):
+        if write_header:
             writer.writerow(['UUID','Prompt','Generated Sequence','Hyperparameters'])
         for prompt,seq, score in zip(prompts,sequences, scores):
             writer.writerow([uuid.uuid4().hex, prompt,seq, hyperparameters])
@@ -167,9 +168,12 @@ def save_sequences_csv(prompts: List[str],sequences: List[str], scores: List[flo
 def save_sequences_csv_no_score(prompts: List[str],sequences: List[str],uuids: List[str],descriptions: List[str], output_file: str, prompt_file: Optional[str] = None, hyperparameters: Optional[dict] = None):
     """Save generated sequences, their scores, prompt file name, and hyperparameters to a CSV file."""
 
+    output_path = Path(output_file)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    write_header = not output_path.exists() or output_path.stat().st_size == 0
     with open(output_file, 'a', newline='') as f:
         writer = csv.writer(f)
-        if os.stat(output_file).st_size == 0:
+        if write_header:
             writer.writerow(['UUID','Prompt','Generated Sequence', 'Description', 'Hyperparameters'])
         for prompt,seq,uuid, desc in zip(prompts,sequences, uuids, descriptions):
             writer.writerow([uuid, prompt,seq, desc, hyperparameters])
@@ -197,7 +201,7 @@ def save_sequences(prompt:Union[List[str],str],sequences: List[str], scores: Lis
         logger.info(f"Saved sequences in CSV format to {output_file}")
     else:
         logger.warning(f"Unrecognize  '{file_ext}'. Defaulting to csv format.")
-        save_sequences_csv(sequences, scores, output_file, prompt_file, hyperparameters)
+        save_sequences_csv(prompt, sequences, scores, output_file, prompt_file, hyperparameters)
 
 def save_sequences_no_score(prompt:Union[List[str],str],sequences: List[str], uuids: List[str], descriptions: List[str], output_file: str,
                   prompt_file: Optional[str] = None, hyperparameters: Optional[dict] = None):
@@ -220,77 +224,71 @@ def save_sequences_no_score(prompt:Union[List[str],str],sequences: List[str], uu
         logger.info(f"Saved sequences in CSV format to {output_file}")
 
 
-def read_prompts(input_file: str, batched: bool = True, batch_size: int = 4) -> np.array:
-    if batched: 
-        promptseqs = []
-        prompt_descs = []
-        uuids = []
+def _read_prompt_records(input_file: Path) -> List[tuple[str, str, str]]:
+    """Read CSV or FASTA prompts as (sequence, description, uuid)."""
+    suffix = input_file.suffix.lower()
+    records: List[tuple[str, str, str]] = []
+    if suffix in {'.fasta', '.fa', '.fna'}:
+        desc = None
+        seq_parts = []
+        with open(input_file) as handle:
+            for line in handle:
+                line = line.strip()
+                if not line:
+                    continue
+                if line.startswith('>'):
+                    if desc is not None:
+                        records.append((''.join(seq_parts), desc, uuid.uuid4().hex))
+                    desc = line[1:]
+                    seq_parts = []
+                else:
+                    seq_parts.append(line)
+        if desc is not None:
+            records.append((''.join(seq_parts), desc, uuid.uuid4().hex))
+    else:
         with open(input_file, encoding='utf-8-sig', newline='') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
-                promptseqs.append(row[0])
-                prompt_descs.append(row[1]) # this will be the description 
-                uuids.append(uuid.uuid4().hex) # this will be the uuid
-        # will want to map uuid to both ... and maybe prompt to uuid to check it 
-        promptseqs = np.array(promptseqs)
-        prompt_descs = np.array(prompt_descs)
-        uuids = np.array(uuids)
-        # if we batch prompts, we need a way to keep track of the original label
+                if not row:
+                    continue
+                if len(row) >= 2:
+                    sequence, description = row[0], row[1]
+                else:
+                    sequence, description = row[0], "no_description"
+                records.append((sequence, description, uuid.uuid4().hex))
+    return records
 
-        # Initialize dictionary to hold sequences grouped by length
-        prompt_split_str = {}
-        for idx, string in enumerate(promptseqs):
-            length = len(string)
-            if length not in prompt_split_str:
-                prompt_split_str[length] = []
-            prompt_split_str[length].append((string, prompt_descs[idx], uuids[idx]))
 
-            if len(prompt_split_str[length]) == batch_size:
-                if 'batches' not in prompt_split_str:
-                    prompt_split_str['batches'] = []
-                prompt_split_str['batches'].append(prompt_split_str[length])
-                prompt_split_str[length] = []  # Reset the list for new batches of this length
-        for key, value in prompt_split_str.items():
-            if len(value) > 0 and key != 'batches':  # Exclude the 'batches' key from being re-added
-                if 'batches' not in prompt_split_str:
-                    prompt_split_str['batches'] = []
-                prompt_split_str['batches'].append(value)
-        
+def read_prompts(input_file: str, batched: bool = True, batch_size: int = 4) -> list:
+    records = _read_prompt_records(Path(input_file))
+    if not batched:
+        return records
 
-        # for string in promptseqs:
-        #     length = len(string)
-        #     if length not in prompt_split_str:
-        #         prompt_split_str[length] = []
-        #     prompt_split_str[length].append(string)
-        
-        #     # Check if the current list has reached the maximum batch size
-        #     if len(prompt_split_str[length]) == batch_size:
-        #         if 'batches' not in prompt_split_str:
-        #             prompt_split_str['batches'] = []
-        #         prompt_split_str['batches'].append(prompt_split_str[length]) # batches hold a list of lists when they meet the full batch size 
-        #         prompt_split_str[length] = []  # Reset the list for new batches of this length
+    # Group equal-length prompts together to support batched generation backends
+    # that require identical prompt lengths.
+    batches_by_length = {}
+    batches = []
+    for record in records:
+        length = len(record[0])
+        batches_by_length.setdefault(length, []).append(record)
+        if len(batches_by_length[length]) == batch_size:
+            batches.append(batches_by_length[length])
+            batches_by_length[length] = []
+    for remaining in batches_by_length.values():
+        if remaining:
+            batches.append(remaining)
+    return batches
 
-        # # Check for any remaining sequences that haven't been added to batches
-        # # these will be ones that aren't full 
-        # for key, value in prompt_split_str.items():
-        #     if len(value) > 0 and key != 'batches':  # Exclude the 'batches' key from being re-added
-        #         if 'batches' not in prompt_split_str:
-        #             prompt_split_str['batches'] = []
-        #         prompt_split_str['batches'].append(value)
 
-        # Return only the batches if they exist; this will return string, description, and uuid
-        return prompt_split_str.get('batches', [])
-    else: 
-        promptseqs = []
-        with open(input_file, encoding='utf-8-sig', newline='') as csvfile:
-            reader = csv.reader(csvfile)
-            for row in reader:
-                promptseqs.append(row[0], row[1], uuid.uuid4().hex) # this will be the description
-        promptseqs = np.array(promptseqs)
-        #seq_ids = np.array(seq_ids)
-        #promptseqs = [' '.join(inner_list) for inner_list in promptseqs]
-        return promptseqs # this will be a 
-    # this funciton will either a list of lists (which each inside list is a batch of sequences), or a list of strings 
+def str2bool(value: Union[str, bool]) -> bool:
+    if isinstance(value, bool):
+        return value
+    value = value.lower()
+    if value in {"true", "1", "yes", "y"}:
+        return True
+    if value in {"false", "0", "no", "n"}:
+        return False
+    raise argparse.ArgumentTypeError(f"expected boolean value, got {value!r}")
 
 def main():
     parser = argparse.ArgumentParser(description='Generate DNA sequences from prompts')
@@ -306,8 +304,9 @@ def main():
     parser.add_argument('--num_generations', type=int, default=3)
     parser.add_argument('--prompt_len', type=int, required=False, help='Length of prompt to use, otherwise uses whole sequence in prompt file')
     parser.add_argument('--prompt_percent', type=float, required=False, help='Percent of prompt to use, otherwise uses whole sequence in prompt file')
-    parser.add_argument('--batched', type=bool, default=False)
+    parser.add_argument('--batched', type=str2bool, default=False)
     parser.add_argument('--batch_size', type=int, default=10)
+    parser.add_argument('--device', type=str, default='cuda:0')
     args = parser.parse_args()
 
     hyperparameters = {
@@ -362,6 +361,7 @@ def main():
                 n_tokens=args.n_tokens,
                 temperature=args.temperature,
                 top_k=args.top_k,
+                device=args.device,
             )
             # output will be a list of sequences for each prompt in promt 
             assert(len(output.sequences) == len(prompt)), f"Output sequences {len(output.sequences)} do not match input prompts {len(prompt)}"
@@ -378,4 +378,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -105,7 +105,7 @@ def fetch_taxonomy_lineage(taxid):
 
 def read_one(path: Path) -> pd.DataFrame:
     """Read one BLAST TSV file"""
-    df = pd.read_csv(path, sep="\\t", header=None,
+    df = pd.read_csv(path, sep="\t", header=None,
                      names=COLS, dtype={"qseqid": str, "sacc": str})
     df["file_src"] = path.name
     return df
@@ -114,7 +114,9 @@ def load_all(dir_: Path) -> pd.DataFrame:
     paths = sorted(Path(dir_).glob("seq*.tsv"))
     if not paths:
         sys.exit("❗ No seq*.tsv files found – check path.")
-    dfs = [read_one(p) for p in paths]
+    dfs = [read_one(p) for p in paths if p.stat().st_size > 0]
+    if not dfs:
+        sys.exit("❗ All seq*.tsv files are empty – no BLAST hits to analyse.")
     return pd.concat(dfs, ignore_index=True)
 
 #### ------------------------------------------------------------------ main workflow
@@ -154,6 +156,7 @@ def main():
     # 1) how many queries have ≥1 host hit?
     queries_with_host = host_hits["qseqid"].nunique()
     total_queries     = best["qseqid"].nunique()
+    host_fraction = queries_with_host / total_queries if total_queries else 0.0
 
     # 2) host hit counts
     if not host_hits.empty:
@@ -172,7 +175,7 @@ def main():
     print("\n=== BLAST host-association summary ===")
     print(f"Total query genomes analysed       : {total_queries}")
     print(f"Queries with ≥1 significant host hit: {queries_with_host} "
-          f"({queries_with_host/total_queries:.1%})")
+          f"({host_fraction:.1%})")
     print("\nTop 10 putative host species:")
     print(host_counts.head(10).to_string(index=False))
 
