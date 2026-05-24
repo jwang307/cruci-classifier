@@ -18,10 +18,10 @@ from typing import Dict, Optional, Sequence, Tuple, Union
 
 try:
     from data_utils import clean_protein_sequence
-    from metrics import binary_metrics
+    from metrics import best_f1_threshold, binary_metrics
 except ImportError:  # Allows importing as classifier.train.
     from classifier.data_utils import clean_protein_sequence
-    from classifier.metrics import binary_metrics
+    from classifier.metrics import best_f1_threshold, binary_metrics
 
 
 def resolve_device(device_arg: str) -> torch.device:
@@ -54,6 +54,42 @@ def _format_metric(value: object) -> str:
     if isinstance(value, (float, np.floating)):
         return "nan" if math.isnan(float(value)) else f"{float(value):.4f}"
     return str(value)
+
+
+def stratified_train_val_split(
+    labels: torch.Tensor,
+    *,
+    val_fraction: float,
+    seed: int,
+    min_val_per_class: int = 1,
+) -> tuple[list[int], list[int]]:
+    """Return train/validation indices with class balance when possible."""
+    if not 0.0 < val_fraction < 1.0:
+        raise ValueError(f"val_fraction must be between 0 and 1, got {val_fraction}")
+    rng = np.random.default_rng(seed)
+    labels_np = labels.detach().cpu().numpy().astype(int)
+    train_indices: list[int] = []
+    val_indices: list[int] = []
+
+    for label in sorted(np.unique(labels_np).tolist()):
+        class_indices = np.where(labels_np == label)[0]
+        rng.shuffle(class_indices)
+        if class_indices.size <= 1:
+            n_val = 0
+        else:
+            n_val = max(min_val_per_class, int(round(class_indices.size * val_fraction)))
+            n_val = min(n_val, class_indices.size - 1)
+        val_indices.extend(class_indices[:n_val].tolist())
+        train_indices.extend(class_indices[n_val:].tolist())
+
+    if not val_indices:
+        raise ValueError(
+            f"validation split is empty for {len(labels_np)} examples; "
+            "increase data size or provide --val_csv"
+        )
+    rng.shuffle(train_indices)
+    rng.shuffle(val_indices)
+    return train_indices, val_indices
 
 
 # ---------------- Dataset ---------------- #
@@ -230,15 +266,32 @@ def main(args: argparse.Namespace) -> None:
         pos_weight = torch.tensor([float(args.pos_weight)], dtype=torch.float32, device=device)
     criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
 
-    train_len = int(0.9 * len(train_ds_full))
-    if train_len == 0 or train_len == len(train_ds_full):
-        raise ValueError(f"need at least 2 training rows for train/val split, got {len(train_ds_full)}")
-    val_len = len(train_ds_full) - train_len
-    train_ds, val_ds = random_split(
-        train_ds_full,
-        [train_len, val_len],
-        generator=torch.Generator().manual_seed(args.seed),
+    if args.val_csv:
+        train_ds = train_ds_full
+        val_ds = SeqDataset(
+            args.val_csv,
+            model.alphabet,
+            clean_sequences=not args.no_clean_sequences,
+            stop_action=args.stop_action,
+            invalid_action=args.invalid_action,
+        )
+    else:
+        train_indices, val_indices = stratified_train_val_split(
+            train_ds_full.labels,
+            val_fraction=args.val_fraction,
+            seed=args.seed,
+            min_val_per_class=args.min_val_per_class,
+        )
+        train_ds = torch.utils.data.Subset(train_ds_full, train_indices)
+        val_ds = torch.utils.data.Subset(train_ds_full, val_indices)
+    val_labels = train_ds_full.labels[val_indices] if not args.val_csv else val_ds.labels
+    val_positive_count = int(val_labels.sum().item())
+    val_negative_count = len(val_labels) - val_positive_count
+    print(
+        f"Train/val split: train_n={len(train_ds)}, val_n={len(val_ds)}, "
+        f"val_pos/neg={val_positive_count}/{val_negative_count}"
     )
+
     test_ds = SeqDataset(
         args.test_csv,
         model.alphabet,
@@ -316,10 +369,28 @@ def main(args: argparse.Namespace) -> None:
     if best_state is not None:
         torch.save(best_state, checkpoint_dir / "best.pt")
         model.load_state_dict(best_state)
+    val_metrics, val_details = eval_epoch(
+        model,
+        loaders["val"],
+        device,
+        threshold=args.threshold,
+        return_details=True,
+    )
+    selected_threshold = best_f1_threshold(val_details["labels"], val_details["probs"])
     test_metrics = eval_epoch(model, loaders["test"], device, threshold=args.threshold)
-    wandb.log({f"test_{k}": v for k, v in test_metrics.items()})
+    test_metrics_selected = eval_epoch(model, loaders["test"], device, threshold=selected_threshold)
+    wandb.log({
+        "selected_val_threshold": selected_threshold,
+        **{f"final_val_{k}": v for k, v in val_metrics.items()},
+        **{f"test_default_{k}": v for k, v in test_metrics.items()},
+        **{f"test_selected_{k}": v for k, v in test_metrics_selected.items()},
+    })
+    print(f"\nSELECTED VALIDATION THRESHOLD: {selected_threshold:.6f}")
     print("\nTEST METRICS")
     for k, v in test_metrics.items():
+        print(f"{k:20s}: {_format_metric(v)}")
+    print("\nTEST METRICS @ SELECTED VALIDATION THRESHOLD")
+    for k, v in test_metrics_selected.items():
         print(f"{k:20s}: {_format_metric(v)}")
     if wandb_run is not None:
         wandb_run.finish()
@@ -328,6 +399,7 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--train_csv", type=str, required=True)
     p.add_argument("--test_csv",  type=str, required=True)
+    p.add_argument("--val_csv", type=str, default=None, help="Optional explicit validation CSV.")
     p.add_argument("--batch_size", type=int, default=4)
     p.add_argument("--lr",         type=float, default=1e-3)
     p.add_argument("--epochs",     type=int, default=5)
@@ -336,6 +408,8 @@ if __name__ == "__main__":
     p.add_argument("--device", type=str, default="auto", help="auto, cpu, cuda, cuda:0, or mps")
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--threshold", type=float, default=0.5)
+    p.add_argument("--val_fraction", type=float, default=0.1)
+    p.add_argument("--min_val_per_class", type=int, default=1)
     p.add_argument("--max_steps", type=int, default=None, help="Optional training-step cap for smoke tests.")
     p.add_argument("--limit_train_examples", type=int, default=None)
     p.add_argument("--limit_test_examples", type=int, default=None)

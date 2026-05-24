@@ -1,0 +1,26 @@
+{
+  "domain": "fullCP",
+  "fold": "Blue",
+  "train_fasta": "data/MachineLearning/fullCP/BlueTraining.fasta",
+  "test_fasta": "data/MachineLearning/fullCP/BlueTest.fasta",
+  "train_csv": "results/local_smoke_esm35m/prepared/fullCP/Blue/train.csv",
+  "test_csv": "results/local_smoke_esm35m/prepared/fullCP/Blue/test.csv",
+  "train": {
+    "n": 2076,
+    "positives": 764,
+    "negatives": 1312,
+    "min_len": 205,
+    "max_len": 778,
+    "stops_cleaned": 1705,
+    "invalid_cleaned": 0
+  },
+  "test": {
+    "n": 407,
+    "positives": 238,
+    "negatives": 169,
+    "min_len": 311,
+    "max_len": 684,
+    "stops_cleaned": 323,
+    "invalid_cleaned": 0
+  }
+}

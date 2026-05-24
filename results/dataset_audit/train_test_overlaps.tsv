@@ -1,0 +1,3 @@
+domain	fold	overlap_type	overlap_key	train_sequence_ids	test_sequence_ids
+Rdomain	Blue	cleaned_sequence	c63ae6dd4fc9f9dda66970e827d13f7c73fe841c	Cruci_CruV_493	Ribo_ND_132327
+Rdomain	Green	cleaned_sequence	c63ae6dd4fc9f9dda66970e827d13f7c73fe841c	Ribo_ND_132327	Cruci_CruV_493

@@ -1,0 +1,49 @@
+Using device: mps
+Train/val split: train_n=1764, val_n=312, val_pos/neg=115/197
+Epoch 1 | steps 221 | loss 0.8242 | val_n 312 | val_pos/neg 115/197 | val_f1 0.6173 | val_bal_acc 0.6581 | val_auroc 0.8535
+Epoch 2 | steps 442 | loss 0.7332 | val_n 312 | val_pos/neg 115/197 | val_f1 0.7586 | val_bal_acc 0.8069 | val_auroc 0.8702
+Epoch 3 | steps 663 | loss 0.6767 | val_n 312 | val_pos/neg 115/197 | val_f1 0.7328 | val_bal_acc 0.7879 | val_auroc 0.8836
+
+SELECTED VALIDATION THRESHOLD: 0.478096
+
+TEST METRICS
+n                   : 407
+positives           : 238
+negatives           : 169
+positive_rate       : 0.5848
+predicted_positives : 202
+predicted_negatives : 205
+tp                  : 179
+tn                  : 146
+fp                  : 23
+fn                  : 59
+acc                 : 0.7985
+balanced_acc        : 0.8080
+precision           : 0.8861
+recall              : 0.7521
+specificity         : 0.8639
+f1                  : 0.8136
+mcc                 : 0.6071
+auroc               : 0.8587
+average_precision   : 0.9042
+
+TEST METRICS @ SELECTED VALIDATION THRESHOLD
+n                   : 407
+positives           : 238
+negatives           : 169
+positive_rate       : 0.5848
+predicted_positives : 228
+predicted_negatives : 179
+tp                  : 190
+tn                  : 131
+fp                  : 38
+fn                  : 48
+acc                 : 0.7887
+balanced_acc        : 0.7867
+precision           : 0.8333
+recall              : 0.7983
+specificity         : 0.7751
+f1                  : 0.8155
+mcc                 : 0.5693
+auroc               : 0.8587
+average_precision   : 0.9042

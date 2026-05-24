@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Evaluate a trained ESM-2 classifier on a labelled sequence dataset."""
 import argparse
+import json
 import math
 from pathlib import Path
 from typing import Dict, Union
@@ -17,6 +18,10 @@ from torch.utils.data import DataLoader
 
 from train import ESMClassifier, SeqDataset, eval_epoch
 from train import _format_metric, resolve_device
+try:
+    from metrics import binary_metrics
+except ImportError:
+    from classifier.metrics import binary_metrics
 
 
 def main(args: argparse.Namespace) -> None:
@@ -42,14 +47,23 @@ def main(args: argparse.Namespace) -> None:
     labels = details["labels"].astype(int)
     scores = details["probs"]
     preds = details["preds"]
+    preds_0_5 = (scores >= 0.5).astype(int)
+    selected_threshold = args.selected_threshold
+    preds_selected = (scores >= selected_threshold).astype(int) if selected_threshold is not None else None
     df = pd.DataFrame({
         "id": dataset.ids,
-        "sequence": dataset.seqs,
         "label": labels,
         "score": scores,
         "prediction": preds,
         "correct": preds == labels,
+        "prediction_0_5": preds_0_5,
+        "correct_0_5": preds_0_5 == labels,
     })
+    if args.include_sequences:
+        df.insert(1, "sequence", dataset.seqs)
+    if preds_selected is not None:
+        df["prediction_selected_threshold"] = preds_selected
+        df["correct_selected_threshold"] = preds_selected == labels
     df.to_csv(out_dir / f"{test_name}_eval_results.csv", index=False)
 
     display = ConfusionMatrixDisplay.from_predictions(labels, preds, cmap="Blues", colorbar=False)
@@ -123,6 +137,19 @@ def main(args: argparse.Namespace) -> None:
     avg_precision = metrics.get("average_precision", math.nan)
     print(f"avg_precision      : {_format_metric(avg_precision)}")
     print(f"best_threshold (max F1): {best_threshold:.4f}")
+    metrics_payload = {
+        "csv": str(args.csv),
+        "checkpoint": str(args.checkpoint),
+        "threshold": args.threshold,
+        "metrics": metrics,
+        "metrics_0_5": binary_metrics(labels, scores, thr=0.5),
+        "best_threshold_from_eval_set": best_threshold,
+    }
+    if selected_threshold is not None:
+        metrics_payload["selected_threshold"] = selected_threshold
+        metrics_payload["metrics_selected_threshold"] = binary_metrics(labels, scores, thr=selected_threshold)
+    with (out_dir / f"{test_name}_metrics.json").open("w") as handle:
+        json.dump(metrics_payload, handle, indent=2)
 
 
 if __name__ == "__main__":
@@ -134,7 +161,9 @@ if __name__ == "__main__":
     parser.add_argument("--out_dir", type=str, default=".")
     parser.add_argument("--device", type=str, default="auto", help="auto, cpu, cuda, cuda:0, or mps")
     parser.add_argument("--threshold", type=float, default=0.5)
+    parser.add_argument("--selected_threshold", type=float, default=None)
     parser.add_argument("--stop_action", choices=["remove", "replace_x", "error"], default="remove")
     parser.add_argument("--invalid_action", choices=["replace_x", "remove", "error"], default="replace_x")
     parser.add_argument("--no_clean_sequences", action="store_true")
+    parser.add_argument("--include_sequences", action="store_true")
     main(parser.parse_args())

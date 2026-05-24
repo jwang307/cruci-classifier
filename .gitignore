@@ -7,3 +7,6 @@ context/
 data/MachineLearning.zip
 data/MachineLearning/
 data/__MACOSX/
+results/**/prepared/**/*.csv
+results/**/checkpoints/
+results/**/*.pt

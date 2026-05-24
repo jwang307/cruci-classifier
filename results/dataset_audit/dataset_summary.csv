@@ -1,0 +1,2 @@
+records_checked,count_rows,stop_chars_cleaned,unsupported_residues_cleaned,train_test_overlaps,duplicate_groups,records_requiring_cleanup
+49420,40,10140,0,2,1193,10120

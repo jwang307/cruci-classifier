@@ -9,6 +9,22 @@ import numpy as np
 from sklearn import metrics
 
 
+def best_f1_threshold(y_true, probs) -> float:
+    """Select the threshold with best F1 using validation labels only."""
+    y_true = np.asarray(y_true).astype(int)
+    probs = np.asarray(probs, dtype=float)
+    if y_true.shape[0] == 0:
+        raise ValueError("cannot select threshold for an empty target array")
+    if np.unique(y_true).size < 2:
+        return 0.5
+    precision, recall, thresholds = metrics.precision_recall_curve(y_true, probs)
+    if thresholds.size == 0:
+        return 0.5
+    f1 = np.where(precision + recall > 0, 2 * precision * recall / (precision + recall), 0.0)
+    best_idx = int(np.nanargmax(f1[1:]) + 1)
+    return float(thresholds[best_idx - 1])
+
+
 def _safe_divide(numerator: float, denominator: float) -> float:
     return float(numerator / denominator) if denominator else math.nan
 
