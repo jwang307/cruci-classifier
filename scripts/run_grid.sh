@@ -29,6 +29,7 @@ HF_PRIVATE="${HF_PRIVATE:-0}"
 HF_PATH_PREFIX="${HF_PATH_PREFIX:-grid_esm35m}"
 HF_UPLOAD_EACH="${HF_UPLOAD_EACH:-0}"
 HF_UPLOAD_FINAL="${HF_UPLOAD_FINAL:-0}"
+HF_UPLOAD_RETRIES="${HF_UPLOAD_RETRIES:-3}"
 
 mkdir -p "${RESULTS_DIR}"
 
@@ -54,16 +55,25 @@ fi
 run_hf_upload() {
   local local_path="$1"
   local remote_path="$2"
+  local attempt
   if [[ -z "${HF_REPO_ID}" ]]; then
     echo "HF_REPO_ID unset; skipping upload for ${local_path}"
     return 0
   fi
-  "${PYTHON_BIN}" "${ROOT_DIR}/scripts/upload_to_hf.py" \
-    --repo_id "${HF_REPO_ID}" \
-    --repo_type "${HF_REPO_TYPE}" \
-    --path "${local_path}" \
-    --path_in_repo "${remote_path}" \
-    "${upload_args[@]}"
+  for attempt in $(seq 1 "${HF_UPLOAD_RETRIES}"); do
+    echo "HF upload attempt ${attempt}/${HF_UPLOAD_RETRIES}: ${local_path} -> ${HF_REPO_ID}/${remote_path}"
+    if "${PYTHON_BIN}" "${ROOT_DIR}/scripts/upload_to_hf.py" \
+      --repo_id "${HF_REPO_ID}" \
+      --repo_type "${HF_REPO_TYPE}" \
+      --path "${local_path}" \
+      --path_in_repo "${remote_path}" \
+      "${upload_args[@]}"; then
+      return 0
+    fi
+    sleep $((attempt * 10))
+  done
+  echo "HF upload failed after ${HF_UPLOAD_RETRIES} attempts: ${local_path}" >&2
+  return 1
 }
 
 echo "root=${ROOT_DIR}"

@@ -54,6 +54,7 @@ export HF_REPO_TYPE=dataset
 export HF_PRIVATE=1
 export HF_UPLOAD_EACH=1
 export HF_UPLOAD_FINAL=1
+export HF_UPLOAD_RETRIES=3
 
 bash scripts/run_grid.sh
 ```
