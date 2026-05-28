@@ -1,0 +1,7 @@
+fair-esm
+pandas
+scikit-learn
+matplotlib
+biopython
+wandb
+huggingface_hub

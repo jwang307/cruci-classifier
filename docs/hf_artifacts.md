@@ -21,19 +21,21 @@ Create a token with write permission at:
 https://huggingface.co/settings/tokens
 ```
 
-On the cloud instance:
+For the current L40S/CUDA 12.6 setup, prefer the uv installer:
 
 ```bash
-python3 -m venv .venv
+cd /workspace/cruci-classifier
+export TORCH_INDEX_URL=https://download.pytorch.org/whl/cu126
+bash scripts/setup_cloud_uv.sh
 source .venv/bin/activate
-pip install torch --index-url https://download.pytorch.org/whl/cu128
-pip install fair-esm pandas scikit-learn matplotlib biopython wandb huggingface_hub
 
 export HF_TOKEN=hf_...
 hf auth login --token "${HF_TOKEN}"
 ```
 
 Use a private HF repo unless the sequences/results are intended to be public.
+
+See `docs/l40s_grid_training.md` for the full cloud launch procedure and training details.
 
 ## Canary run with upload
 
