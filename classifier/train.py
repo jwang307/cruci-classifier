@@ -9,12 +9,22 @@ Run:
 
 Requires `wandb login` beforehand.
 """
-import argparse, copy, math, random, wandb, torch, pandas as pd, numpy as np
+import argparse
+import copy
+import json
+import math
+import random
+from datetime import datetime, timezone
+
+import numpy as np
+import pandas as pd
+import torch
+import wandb
 from torch import nn
-from torch.utils.data import Dataset, DataLoader, random_split
+from torch.utils.data import DataLoader, Dataset
 import esm
 from pathlib import Path
-from typing import Dict, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, Optional, Sequence, Tuple, Union
 
 try:
     from data_utils import clean_protein_sequence
@@ -22,6 +32,12 @@ try:
 except ImportError:  # Allows importing as classifier.train.
     from classifier.data_utils import clean_protein_sequence
     from classifier.metrics import best_f1_threshold, binary_metrics
+
+
+ESM_MODEL_NAME = "esm2_t12_35M_UR50D"
+ESM_REPR_LAYER = 12
+CHECKPOINT_FORMAT = "cruci_esm_classifier_head"
+CHECKPOINT_VERSION = 1
 
 
 def resolve_device(device_arg: str) -> torch.device:
@@ -54,6 +70,94 @@ def _format_metric(value: object) -> str:
     if isinstance(value, (float, np.floating)):
         return "nan" if math.isnan(float(value)) else f"{float(value):.4f}"
     return str(value)
+
+
+def _jsonify(value: Any) -> Any:
+    """Convert common numpy/torch/path objects into JSON-serialisable values."""
+    if isinstance(value, Path):
+        return str(value)
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+    if isinstance(value, np.generic):
+        return value.item()
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
+    if isinstance(value, dict):
+        return {str(k): _jsonify(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_jsonify(v) for v in value]
+    return value
+
+
+def write_json(path: Path, payload: Dict[str, Any]) -> None:
+    """Write a stable indented JSON file."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w") as handle:
+        json.dump(_jsonify(payload), handle, indent=2, sort_keys=True)
+        handle.write("\n")
+
+
+def head_checkpoint_payload(
+    model: "ESMClassifier",
+    *,
+    metadata: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    """Return a tiny checkpoint containing only the trained classifier head."""
+    return {
+        "format": CHECKPOINT_FORMAT,
+        "version": CHECKPOINT_VERSION,
+        "created_at_utc": datetime.now(timezone.utc).isoformat(),
+        "esm_model": ESM_MODEL_NAME,
+        "repr_layer": ESM_REPR_LAYER,
+        "pooling": "bos",
+        "hidden_dim": model.hidden,
+        "classifier_state_dict": {
+            key: value.detach().cpu() for key, value in model.classifier.state_dict().items()
+        },
+        "metadata": metadata or {},
+    }
+
+
+def save_head_checkpoint(
+    model: "ESMClassifier",
+    path: Union[str, Path],
+    *,
+    metadata: Optional[Dict[str, Any]] = None,
+) -> None:
+    """Save a portable head-only checkpoint suitable for HF/GitHub artifacts."""
+    torch.save(head_checkpoint_payload(model, metadata=metadata), path)
+
+
+def load_checkpoint_into_model(
+    model: "ESMClassifier",
+    checkpoint_path: Union[str, Path],
+    *,
+    map_location: Union[str, torch.device] = "cpu",
+) -> Dict[str, Any]:
+    """Load either a legacy full-state checkpoint or a head-only checkpoint."""
+    state = torch.load(checkpoint_path, map_location=map_location)
+    if isinstance(state, dict) and state.get("format") == CHECKPOINT_FORMAT:
+        if state.get("esm_model") != ESM_MODEL_NAME:
+            raise ValueError(
+                f"checkpoint ESM model {state.get('esm_model')!r} does not match {ESM_MODEL_NAME!r}"
+            )
+        if int(state.get("hidden_dim", -1)) != int(model.hidden):
+            raise ValueError(
+                f"checkpoint hidden_dim {state.get('hidden_dim')} does not match model hidden_dim {model.hidden}"
+            )
+        model.classifier.load_state_dict(state["classifier_state_dict"])
+        return {
+            "format": state.get("format"),
+            "version": state.get("version"),
+            "esm_model": state.get("esm_model"),
+            "repr_layer": state.get("repr_layer"),
+            "pooling": state.get("pooling"),
+            "hidden_dim": state.get("hidden_dim"),
+            "metadata": state.get("metadata", {}),
+        }
+
+    model.load_state_dict(state)
+    return {"format": "full_state_dict", "esm_model": ESM_MODEL_NAME}
 
 
 def stratified_train_val_split(
@@ -189,14 +293,18 @@ class ESMClassifier(nn.Module):
         """Initialise the ESM encoder and projection head."""
         super().__init__()
         self.esm, self.alphabet = esm.pretrained.esm2_t12_35M_UR50D()
+        self.esm.eval()
+        for param in self.esm.parameters():
+            param.requires_grad_(False)
         self.hidden = self.esm.embed_dim
         self.classifier = nn.Linear(self.hidden, 1)
 
     def forward(self, tokens: torch.Tensor) -> torch.Tensor:
         """Return logits for a batch of tokenised sequences."""
+        self.esm.eval()
         with torch.no_grad():
-            out = self.esm(tokens, repr_layers=[12], return_contacts=False)
-        cls_emb = out["representations"][12][:, 0, :]   # BOS token
+            out = self.esm(tokens, repr_layers=[ESM_REPR_LAYER], return_contacts=False)
+        cls_emb = out["representations"][ESM_REPR_LAYER][:, 0, :]   # BOS token
         return self.classifier(cls_emb).squeeze(-1)
 
 # ------------- Train / Eval -------------- #
@@ -275,6 +383,8 @@ def main(args: argparse.Namespace) -> None:
             stop_action=args.stop_action,
             invalid_action=args.invalid_action,
         )
+        train_indices = list(range(len(train_ds_full)))
+        val_indices = None
     else:
         train_indices, val_indices = stratified_train_val_split(
             train_ds_full.labels,
@@ -308,6 +418,32 @@ def main(args: argparse.Namespace) -> None:
         "test": DataLoader(test_ds, batch_size=batch_size, shuffle=False, collate_fn=collate, num_workers=args.num_workers),
     }
 
+    split_payload = {
+        "train_csv": args.train_csv,
+        "val_csv": args.val_csv,
+        "test_csv": args.test_csv,
+        "seed": args.seed,
+        "val_fraction": args.val_fraction,
+        "min_val_per_class": args.min_val_per_class,
+        "train_n": len(train_ds),
+        "val_n": len(val_ds),
+        "test_n": len(test_ds),
+        "train_positives": positive_count,
+        "train_negatives": negative_count,
+        "val_positives": val_positive_count,
+        "val_negatives": val_negative_count,
+        "train_cleaning_summary": train_ds_full.cleaning_summary,
+        "val_cleaning_summary": val_ds.cleaning_summary if args.val_csv else train_ds_full.cleaning_summary,
+        "test_cleaning_summary": test_ds.cleaning_summary,
+    }
+    if args.val_csv:
+        split_payload["validation_source"] = "explicit_val_csv"
+    else:
+        split_payload["validation_source"] = "stratified_split_from_train_csv"
+        split_payload["train_indices"] = train_indices
+        split_payload["val_indices"] = val_indices
+    write_json(checkpoint_dir / "train_val_split.json", split_payload)
+
     wandb_run = wandb.init(
         project=args.wandb_project,
         entity=args.wandb_entity,
@@ -322,6 +458,8 @@ def main(args: argparse.Namespace) -> None:
     )
     best_f1: float = -math.inf
     best_state: Optional[Dict[str, torch.Tensor]] = None
+    best_epoch: Optional[int] = None
+    history: list[Dict[str, Any]] = []
     global_step = 0
 
     for epoch in range(1, args.epochs + 1):
@@ -358,16 +496,37 @@ def main(args: argparse.Namespace) -> None:
 
         if metrics["f1"] > best_f1:
             best_f1, best_state = float(metrics["f1"]), copy.deepcopy(model.state_dict())
+            best_epoch = epoch
+        history.append({
+            "epoch": epoch,
+            "global_step": global_step,
+            "train_loss": epoch_loss,
+            "val_metrics": metrics,
+            "is_best": best_epoch == epoch,
+        })
 
         if args.save_every > 0 and epoch % args.save_every == 0:
-            checkpoint_path = checkpoint_dir / f"epoch_{epoch}.pt"
-            torch.save(model.state_dict(), checkpoint_path)
+            if args.save_full_checkpoint:
+                checkpoint_path = checkpoint_dir / f"epoch_{epoch}.pt"
+                torch.save(model.state_dict(), checkpoint_path)
+            save_head_checkpoint(
+                model,
+                checkpoint_dir / f"epoch_{epoch}_head.pt",
+                metadata={
+                    "epoch": epoch,
+                    "global_step": global_step,
+                    "train_loss": epoch_loss,
+                    "val_metrics": metrics,
+                    "args": vars(args),
+                },
+            )
         if args.max_steps is not None and global_step >= args.max_steps:
             break
 
     # -------- Test set -------- #
     if best_state is not None:
-        torch.save(best_state, checkpoint_dir / "best.pt")
+        if args.save_full_checkpoint:
+            torch.save(best_state, checkpoint_dir / "best.pt")
         model.load_state_dict(best_state)
     val_metrics, val_details = eval_epoch(
         model,
@@ -379,6 +538,34 @@ def main(args: argparse.Namespace) -> None:
     selected_threshold = best_f1_threshold(val_details["labels"], val_details["probs"])
     test_metrics = eval_epoch(model, loaders["test"], device, threshold=args.threshold)
     test_metrics_selected = eval_epoch(model, loaders["test"], device, threshold=selected_threshold)
+    training_summary = {
+        "created_at_utc": datetime.now(timezone.utc).isoformat(),
+        "esm_model": ESM_MODEL_NAME,
+        "checkpoint_format": CHECKPOINT_FORMAT,
+        "checkpoint_version": CHECKPOINT_VERSION,
+        "best_epoch": best_epoch,
+        "best_val_f1": best_f1,
+        "global_step": global_step,
+        "selected_val_threshold": selected_threshold,
+        "args": vars(args),
+        "split": split_payload,
+        "history": history,
+        "final_val_metrics": val_metrics,
+        "test_default_metrics": test_metrics,
+        "test_selected_threshold_metrics": test_metrics_selected,
+        "artifacts": {
+            "head_checkpoint": str(checkpoint_dir / "best_head.pt"),
+            "full_checkpoint": str(checkpoint_dir / "best.pt") if args.save_full_checkpoint else None,
+            "training_summary": str(checkpoint_dir / "training_summary.json"),
+            "split": str(checkpoint_dir / "train_val_split.json"),
+        },
+    }
+    save_head_checkpoint(
+        model,
+        checkpoint_dir / "best_head.pt",
+        metadata=training_summary,
+    )
+    write_json(checkpoint_dir / "training_summary.json", training_summary)
     wandb.log({
         "selected_val_threshold": selected_threshold,
         **{f"final_val_{k}": v for k, v in val_metrics.items()},
@@ -405,6 +592,13 @@ if __name__ == "__main__":
     p.add_argument("--epochs",     type=int, default=5)
     p.add_argument("--checkpoint_dir", type=str, default="/large_storage/hielab/jwang/cruci/")
     p.add_argument("--save_every", type=int, default=5)
+    p.add_argument(
+        "--no_save_full_checkpoint",
+        dest="save_full_checkpoint",
+        action="store_false",
+        help="Only save tiny head checkpoints; skip legacy full ESM state_dict checkpoints.",
+    )
+    p.set_defaults(save_full_checkpoint=True)
     p.add_argument("--device", type=str, default="auto", help="auto, cpu, cuda, cuda:0, or mps")
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--threshold", type=float, default=0.5)

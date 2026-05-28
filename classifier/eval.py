@@ -4,7 +4,7 @@ import argparse
 import json
 import math
 from pathlib import Path
-from typing import Dict, Union
+from typing import Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -16,7 +16,7 @@ from sklearn.metrics import (
 )
 from torch.utils.data import DataLoader
 
-from train import ESMClassifier, SeqDataset, eval_epoch
+from train import ESMClassifier, SeqDataset, eval_epoch, load_checkpoint_into_model
 from train import _format_metric, resolve_device
 try:
     from metrics import binary_metrics
@@ -30,8 +30,7 @@ def main(args: argparse.Namespace) -> None:
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     model = ESMClassifier().to(device)
-    state: Dict[str, torch.Tensor] = torch.load(args.checkpoint, map_location=device)
-    model.load_state_dict(state)
+    checkpoint_metadata = load_checkpoint_into_model(model, args.checkpoint, map_location=device)
     test_name = Path(args.csv).stem
 
     dataset = SeqDataset(
@@ -49,6 +48,9 @@ def main(args: argparse.Namespace) -> None:
     preds = details["preds"]
     preds_0_5 = (scores >= 0.5).astype(int)
     selected_threshold = args.selected_threshold
+    checkpoint_training_metadata = checkpoint_metadata.get("metadata", {})
+    if selected_threshold is None and isinstance(checkpoint_training_metadata, dict):
+        selected_threshold = checkpoint_training_metadata.get("selected_val_threshold")
     preds_selected = (scores >= selected_threshold).astype(int) if selected_threshold is not None else None
     df = pd.DataFrame({
         "id": dataset.ids,
@@ -81,7 +83,12 @@ def main(args: argparse.Namespace) -> None:
         plt.close()
     else:
         precision, recall, thresholds = precision_recall_curve(labels, scores)
-        f1_scores = np.where(precision + recall > 0, 2 * precision * recall / (precision + recall), 0.0)
+        f1_scores = np.divide(
+            2 * precision * recall,
+            precision + recall,
+            out=np.zeros_like(precision),
+            where=(precision + recall) > 0,
+        )
         if thresholds.size > 0:
             best_idx = int(np.nanargmax(f1_scores[1:]) + 1)
             best_threshold = float(thresholds[best_idx - 1])
@@ -140,6 +147,7 @@ def main(args: argparse.Namespace) -> None:
     metrics_payload = {
         "csv": str(args.csv),
         "checkpoint": str(args.checkpoint),
+        "checkpoint_metadata": checkpoint_metadata,
         "threshold": args.threshold,
         "metrics": metrics,
         "metrics_0_5": binary_metrics(labels, scores, thr=0.5),
