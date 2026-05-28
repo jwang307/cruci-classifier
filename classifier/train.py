@@ -524,6 +524,9 @@ def main(args: argparse.Namespace) -> None:
             break
 
     # -------- Test set -------- #
+    final_state = copy.deepcopy(model.state_dict())
+    if args.save_full_checkpoint:
+        torch.save(final_state, checkpoint_dir / "final.pt")
     if best_state is not None:
         if args.save_full_checkpoint:
             torch.save(best_state, checkpoint_dir / "best.pt")
@@ -555,7 +558,9 @@ def main(args: argparse.Namespace) -> None:
         "test_selected_threshold_metrics": test_metrics_selected,
         "artifacts": {
             "head_checkpoint": str(checkpoint_dir / "best_head.pt"),
+            "final_head_checkpoint": str(checkpoint_dir / "final_head.pt"),
             "full_checkpoint": str(checkpoint_dir / "best.pt") if args.save_full_checkpoint else None,
+            "final_full_checkpoint": str(checkpoint_dir / "final.pt") if args.save_full_checkpoint else None,
             "training_summary": str(checkpoint_dir / "training_summary.json"),
             "split": str(checkpoint_dir / "train_val_split.json"),
         },
@@ -565,6 +570,14 @@ def main(args: argparse.Namespace) -> None:
         checkpoint_dir / "best_head.pt",
         metadata=training_summary,
     )
+    model.load_state_dict(final_state)
+    save_head_checkpoint(
+        model,
+        checkpoint_dir / "final_head.pt",
+        metadata={**training_summary, "checkpoint_role": "final_epoch"},
+    )
+    if best_state is not None:
+        model.load_state_dict(best_state)
     write_json(checkpoint_dir / "training_summary.json", training_summary)
     wandb.log({
         "selected_val_threshold": selected_threshold,

@@ -4,7 +4,7 @@ Persist cloud-run outputs outside the rented GPU instance.
 
 The default path is a Hugging Face Hub **dataset** repo containing:
 
-- tiny head-only checkpoints: `checkpoints/best_head.pt`
+- tiny head-only checkpoints: `checkpoints/best_head.pt`, `checkpoints/final_head.pt`
 - training metadata: `checkpoints/training_summary.json`, `train_val_split.json`
 - evaluation tables: `eval/test_eval_results.csv`
 - metrics and plots: `eval/test_metrics.json`, PR curve, confusion matrix, histogram
@@ -149,4 +149,5 @@ grid_esm35m/run_manifest.json
 grid_esm35m/*/*/eval/test_metrics.json
 grid_esm35m/*/*/eval/test_eval_results.csv
 grid_esm35m/*/*/checkpoints/best_head.pt
+grid_esm35m/*/*/checkpoints/final_head.pt
 ```
