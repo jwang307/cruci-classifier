@@ -183,20 +183,40 @@ Interpretation: fullCP and R scores are better calibrated around the default bou
 
 4. Clade-level transfer interpretation requires tree mapping. The current grid gives out-of-fold scores, but it does not by itself identify clade-structured discordance without the phylogeny.
 
-5. The HF dataset is private and the cloud instance was no longer reachable during this writeup, so sequence-level high-confidence discordant tables were not regenerated locally in this pass. They should be generated directly from the uploaded `all_oof_predictions.csv`.
+5. Sequence IDs are not perfectly unique in the source FASTAs. The tree annotation output aggregates duplicate raw IDs by fold/domain for tree-label compatibility, while `all_model_long_format_predictions.tsv` preserves per-record rows using `sequence_record_id`.
+
+## Sequence-level outputs
+
+The plan-required sequence-level outputs were generated from the uploaded `all_oof_predictions.csv`:
+
+```text
+results/predictions/all_model_long_format_predictions.tsv
+results/predictions/tree_annotation_scores_wide.tsv
+results/predictions/high_confidence_discordant_sequences.tsv
+results/predictions/moderate_discordant_sequences.tsv
+results/predictions/fullCP_Rdomain_agreeing_discordant_sequences.tsv
+results/predictions/per_cluster_score_summary.tsv
+results/reports/sequence_discordance_analysis.md
+```
+
+Key counts:
+
+```text
+long prediction rows: 9875
+unique sequence IDs: 2483
+wide tree rows: 2483
+high-confidence discordant sequence-domain rows: 213
+moderate discordant sequence-domain rows: 1308
+fullCP+R moderate-agreeing discordant sequences: 86
+```
+
+Highest-priority candidate sequences are the fullCP+R agreeing discordants, especially those high-confidence in both models.
 
 ## Immediate next analyses
 
-1. Generate the tree annotation tables:
+1. Map `tree_annotation_scores_wide.tsv` onto the capsid tree and check whether discordant sequences are clade-structured.
 
-```text
-all_model_long_format_predictions.tsv
-tree_annotation_scores_wide.tsv
-high_confidence_discordant_sequences.tsv
-per_cluster_score_summary.tsv
-```
-
-High-confidence discordance:
+2. Prioritize high-confidence discordance:
 
 ```text
 label 1 and score < 0.2  # crucivirus scored RNA-virus-like
@@ -205,7 +225,7 @@ label 0 and score > 0.8  # RNA virus scored crucivirus-like
 
 Highest-priority candidates are sequences discordant in both fullCP and Rdomain.
 
-2. Run baselines on the same five folds:
+3. Run baselines on the same five folds:
 
 - length-only logistic regression,
 - amino-acid composition logistic regression,
@@ -214,11 +234,9 @@ Highest-priority candidates are sequences discordant in both fullCP and Rdomain.
 - label-shuffle negative control,
 - nearest-neighbor sequence-identity classifier.
 
-3. Re-run Rdomain Blue/Green after removing/adjudicating the exact cross-label duplicate pair.
+4. Re-run Rdomain Blue/Green after removing/adjudicating the exact cross-label duplicate pair.
 
-4. Add bootstrap confidence intervals by fold/domain, especially for Red and Purple.
-
-5. Map fullCP and Rdomain continuous scores onto the tree. Look for clade-structured discordance rather than isolated mistakes.
+5. Add bootstrap confidence intervals by fold/domain, especially for Red and Purple.
 
 6. If baselines do not explain the signal, proceed to R-domain interpretability:
 
@@ -232,4 +250,3 @@ Highest-priority candidates are sequences discordant in both fullCP and Rdomain.
 For the collaborator update, frame the result as:
 
 > Under a five-cluster phylogenetic holdout, the frozen-ESM2-35M classifier head detects a robust crucivirus-vs-RNA-virus signal in full capsids. Domain-specific training shows that the R domain carries the strongest localized signal, roughly matching full capsid performance by AUROC and balanced accuracy. This supports the R-domain/nucleic-acid-interaction hypothesis, but baseline controls and tree-mapped discordance analysis are required before making mechanistic or transfer-direction claims.
-

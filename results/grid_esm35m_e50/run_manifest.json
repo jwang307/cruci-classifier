@@ -1,0 +1,110 @@
+{
+  "generated_at_utc": "2026-05-28T11:23:08.156831+00:00",
+  "metrics_csv": "/workspace/cruci-classifier/results/grid_esm35m_e50/aggregate_metrics.csv",
+  "metrics_json_count": 20,
+  "prediction_rows": 9875,
+  "predictions_csv": "/workspace/cruci-classifier/results/grid_esm35m_e50/all_oof_predictions.csv",
+  "root": "/workspace/cruci-classifier/results/grid_esm35m_e50",
+  "runs": [
+    {
+      "domain": "Pdomain",
+      "fold": "Blue",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Pdomain/Blue/eval/test_metrics.json"
+    },
+    {
+      "domain": "Pdomain",
+      "fold": "Green",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Pdomain/Green/eval/test_metrics.json"
+    },
+    {
+      "domain": "Pdomain",
+      "fold": "Purple",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Pdomain/Purple/eval/test_metrics.json"
+    },
+    {
+      "domain": "Pdomain",
+      "fold": "Red",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Pdomain/Red/eval/test_metrics.json"
+    },
+    {
+      "domain": "Pdomain",
+      "fold": "Yellow",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Pdomain/Yellow/eval/test_metrics.json"
+    },
+    {
+      "domain": "Rdomain",
+      "fold": "Blue",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Rdomain/Blue/eval/test_metrics.json"
+    },
+    {
+      "domain": "Rdomain",
+      "fold": "Green",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Rdomain/Green/eval/test_metrics.json"
+    },
+    {
+      "domain": "Rdomain",
+      "fold": "Purple",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Rdomain/Purple/eval/test_metrics.json"
+    },
+    {
+      "domain": "Rdomain",
+      "fold": "Red",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Rdomain/Red/eval/test_metrics.json"
+    },
+    {
+      "domain": "Rdomain",
+      "fold": "Yellow",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Rdomain/Yellow/eval/test_metrics.json"
+    },
+    {
+      "domain": "Sdomain",
+      "fold": "Blue",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Sdomain/Blue/eval/test_metrics.json"
+    },
+    {
+      "domain": "Sdomain",
+      "fold": "Green",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Sdomain/Green/eval/test_metrics.json"
+    },
+    {
+      "domain": "Sdomain",
+      "fold": "Purple",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Sdomain/Purple/eval/test_metrics.json"
+    },
+    {
+      "domain": "Sdomain",
+      "fold": "Red",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Sdomain/Red/eval/test_metrics.json"
+    },
+    {
+      "domain": "Sdomain",
+      "fold": "Yellow",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/Sdomain/Yellow/eval/test_metrics.json"
+    },
+    {
+      "domain": "fullCP",
+      "fold": "Blue",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/fullCP/Blue/eval/test_metrics.json"
+    },
+    {
+      "domain": "fullCP",
+      "fold": "Green",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/fullCP/Green/eval/test_metrics.json"
+    },
+    {
+      "domain": "fullCP",
+      "fold": "Purple",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/fullCP/Purple/eval/test_metrics.json"
+    },
+    {
+      "domain": "fullCP",
+      "fold": "Red",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/fullCP/Red/eval/test_metrics.json"
+    },
+    {
+      "domain": "fullCP",
+      "fold": "Yellow",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_e50/fullCP/Yellow/eval/test_metrics.json"
+    }
+  ]
+}
