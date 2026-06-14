@@ -6,6 +6,8 @@ __pycache__/
 context/
 data/MachineLearning.zip
 data/MachineLearning/
+data/MachineLearning_corrected/
+data/corrected_data/
 data/__MACOSX/
 results/**/prepared/**/*.csv
 results/**/checkpoints/
