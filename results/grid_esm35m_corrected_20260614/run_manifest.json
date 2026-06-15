@@ -1,0 +1,30 @@
+{
+  "generated_at_utc": "2026-06-15T00:00:26.348594+00:00",
+  "metrics_csv": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/aggregate_metrics.csv",
+  "metrics_json_count": 4,
+  "prediction_rows": 2089,
+  "predictions_csv": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/all_oof_predictions.csv",
+  "root": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614",
+  "runs": [
+    {
+      "domain": "Rdomain",
+      "fold": "Green",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/Rdomain/Green/eval/test_metrics.json"
+    },
+    {
+      "domain": "Rdomain",
+      "fold": "Red",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/Rdomain/Red/eval/test_metrics.json"
+    },
+    {
+      "domain": "Rdomain",
+      "fold": "Yellow",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/Rdomain/Yellow/eval/test_metrics.json"
+    },
+    {
+      "domain": "fullCP",
+      "fold": "Green",
+      "metrics_path": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/fullCP/Green/eval/test_metrics.json"
+    }
+  ]
+}

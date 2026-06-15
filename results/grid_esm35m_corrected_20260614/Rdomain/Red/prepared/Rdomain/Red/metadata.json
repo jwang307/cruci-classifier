@@ -1,0 +1,26 @@
+{
+  "domain": "Rdomain",
+  "fold": "Red",
+  "train_fasta": "/workspace/cruci-classifier/data/MachineLearning_corrected/Rdomain/Red_R_Training.fasta",
+  "test_fasta": "/workspace/cruci-classifier/data/MachineLearning_corrected/Rdomain/Red_R_Test.fasta",
+  "train_csv": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/Rdomain/Red/prepared/Rdomain/Red/train.csv",
+  "test_csv": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/Rdomain/Red/prepared/Rdomain/Red/test.csv",
+  "train": {
+    "n": 1992,
+    "positives": 968,
+    "negatives": 1024,
+    "min_len": 1,
+    "max_len": 339,
+    "stops_cleaned": 0,
+    "invalid_cleaned": 0
+  },
+  "test": {
+    "n": 442,
+    "positives": 6,
+    "negatives": 436,
+    "min_len": 5,
+    "max_len": 326,
+    "stops_cleaned": 0,
+    "invalid_cleaned": 0
+  }
+}

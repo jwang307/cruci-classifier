@@ -1,0 +1,3 @@
+domain	fold	sequence_length	split	id	canonical_id	label_from_id	path
+Rdomain	Green	144	test	Cruci_Cer_JAGYYM010003673	Cruci_Cer_JAGYYM010003673	1	data/MachineLearning_corrected/Rdomain/Green_R_Test.fasta
+Rdomain	Green	144	train	Euk_Cer_JAGYYM010003673	Cruci_Cer_JAGYYM010003673	0	data/MachineLearning_corrected/Rdomain/Green_R_Training.fasta

@@ -1,0 +1,5 @@
+domain	fold	id	label	score	prediction_0_5	correct_0_5	prediction_selected_threshold	correct_selected_threshold
+Rdomain	Green	Cruci_Cer_JAGYYM010003673	1	0.99819475	1	True	1	True
+Rdomain	Red	Cruci_Carp_JAHDYR010000041	1	0.95808357	1	True	1	True
+Rdomain	Yellow	Cruci_PolBeRBZT01000154.1	1	0.9879461	1	True	1	True
+fullCP	Green	Cruci_Cer_JAGYYM010003673	1	0.9917446	1	True	1	True

@@ -1,0 +1,129 @@
+Using device: cuda
+Train/val split: train_n=1693, val_n=299, val_pos/neg=145/154
+wandb: Tracking run with wandb version 0.27.2
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /workspace/cruci-classifier/wandb/offline-run-20260614_233538-tgunawgs
+Epoch 1 | steps 53 | loss 0.6849 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8049 | val_bal_acc 0.8349 | val_auroc 0.8965
+Epoch 2 | steps 106 | loss 0.6407 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8539 | val_bal_acc 0.8671 | val_auroc 0.9008
+Epoch 3 | steps 159 | loss 0.6063 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8582 | val_bal_acc 0.8706 | val_auroc 0.9073
+Epoch 4 | steps 212 | loss 0.5783 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8339 | val_bal_acc 0.8310 | val_auroc 0.9136
+Epoch 5 | steps 265 | loss 0.5526 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8622 | val_bal_acc 0.8687 | val_auroc 0.9206
+Epoch 6 | steps 318 | loss 0.5307 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8652 | val_bal_acc 0.8720 | val_auroc 0.9254
+Epoch 7 | steps 371 | loss 0.5125 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8657 | val_bal_acc 0.8773 | val_auroc 0.9324
+Epoch 8 | steps 424 | loss 0.4966 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8657 | val_bal_acc 0.8773 | val_auroc 0.9367
+Epoch 9 | steps 477 | loss 0.4841 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8696 | val_bal_acc 0.8781 | val_auroc 0.9391
+Epoch 10 | steps 530 | loss 0.4695 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8741 | val_bal_acc 0.8791 | val_auroc 0.9416
+Epoch 11 | steps 583 | loss 0.4583 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8683 | val_bal_acc 0.8752 | val_auroc 0.9433
+Epoch 12 | steps 636 | loss 0.4478 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8800 | val_bal_acc 0.8880 | val_auroc 0.9446
+Epoch 13 | steps 689 | loss 0.4384 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8800 | val_bal_acc 0.8880 | val_auroc 0.9457
+Epoch 14 | steps 742 | loss 0.4298 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8732 | val_bal_acc 0.8789 | val_auroc 0.9469
+Epoch 15 | steps 795 | loss 0.4215 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8800 | val_bal_acc 0.8880 | val_auroc 0.9482
+Epoch 16 | steps 848 | loss 0.4136 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8794 | val_bal_acc 0.8854 | val_auroc 0.9493
+Epoch 17 | steps 901 | loss 0.4074 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8874 | val_bal_acc 0.8898 | val_auroc 0.9501
+Epoch 18 | steps 954 | loss 0.4004 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8809 | val_bal_acc 0.8882 | val_auroc 0.9506
+Epoch 19 | steps 1007 | loss 0.3949 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8889 | val_bal_acc 0.8951 | val_auroc 0.9517
+Epoch 20 | steps 1060 | loss 0.3913 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8849 | val_bal_acc 0.8917 | val_auroc 0.9528
+Epoch 21 | steps 1113 | loss 0.3841 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8897 | val_bal_acc 0.8929 | val_auroc 0.9532
+Epoch 22 | steps 1166 | loss 0.3781 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8881 | val_bal_acc 0.8949 | val_auroc 0.9536
+Epoch 23 | steps 1219 | loss 0.3743 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8982 | val_bal_acc 0.9024 | val_auroc 0.9541
+Epoch 24 | steps 1272 | loss 0.3698 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9021 | val_bal_acc 0.9059 | val_auroc 0.9546
+Epoch 25 | steps 1325 | loss 0.3679 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8919 | val_bal_acc 0.8935 | val_auroc 0.9554
+Epoch 26 | steps 1378 | loss 0.3620 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9021 | val_bal_acc 0.9059 | val_auroc 0.9558
+Epoch 27 | steps 1431 | loss 0.3584 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9034 | val_bal_acc 0.9063 | val_auroc 0.9562
+Epoch 28 | steps 1484 | loss 0.3561 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9010 | val_bal_acc 0.9032 | val_auroc 0.9570
+Epoch 29 | steps 1537 | loss 0.3516 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9066 | val_bal_acc 0.9095 | val_auroc 0.9572
+Epoch 30 | steps 1590 | loss 0.3481 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9072 | val_bal_acc 0.9097 | val_auroc 0.9580
+Epoch 31 | steps 1643 | loss 0.3491 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9066 | val_bal_acc 0.9095 | val_auroc 0.9583
+Epoch 32 | steps 1696 | loss 0.3424 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9091 | val_bal_acc 0.9126 | val_auroc 0.9586
+Epoch 33 | steps 1749 | loss 0.3387 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8993 | val_bal_acc 0.9004 | val_auroc 0.9590
+Epoch 34 | steps 1802 | loss 0.3360 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9046 | val_bal_acc 0.9089 | val_auroc 0.9593
+Epoch 35 | steps 1855 | loss 0.3340 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9072 | val_bal_acc 0.9097 | val_auroc 0.9598
+Epoch 36 | steps 1908 | loss 0.3313 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9017 | val_bal_acc 0.9034 | val_auroc 0.9602
+Epoch 37 | steps 1961 | loss 0.3301 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9041 | val_bal_acc 0.9065 | val_auroc 0.9602
+Epoch 38 | steps 2014 | loss 0.3271 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9123 | val_bal_acc 0.9158 | val_auroc 0.9608
+Epoch 39 | steps 2067 | loss 0.3237 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9046 | val_bal_acc 0.9089 | val_auroc 0.9608
+Epoch 40 | steps 2120 | loss 0.3221 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9123 | val_bal_acc 0.9158 | val_auroc 0.9610
+Epoch 41 | steps 2173 | loss 0.3193 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9097 | val_bal_acc 0.9128 | val_auroc 0.9613
+Epoch 42 | steps 2226 | loss 0.3175 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9129 | val_bal_acc 0.9160 | val_auroc 0.9618
+Epoch 43 | steps 2279 | loss 0.3164 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9123 | val_bal_acc 0.9158 | val_auroc 0.9622
+Epoch 44 | steps 2332 | loss 0.3139 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9123 | val_bal_acc 0.9158 | val_auroc 0.9623
+Epoch 45 | steps 2385 | loss 0.3117 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9123 | val_bal_acc 0.9158 | val_auroc 0.9626
+Epoch 46 | steps 2438 | loss 0.3101 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9024 | val_bal_acc 0.9036 | val_auroc 0.9627
+Epoch 47 | steps 2491 | loss 0.3080 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9129 | val_bal_acc 0.9160 | val_auroc 0.9632
+Epoch 48 | steps 2544 | loss 0.3079 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9030 | val_bal_acc 0.9038 | val_auroc 0.9635
+Epoch 49 | steps 2597 | loss 0.3076 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9167 | val_bal_acc 0.9195 | val_auroc 0.9636
+Epoch 50 | steps 2650 | loss 0.3036 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9129 | val_bal_acc 0.9160 | val_auroc 0.9639
+
+SELECTED VALIDATION THRESHOLD: 0.482631
+
+TEST METRICS
+n                   : 442
+positives           : 6
+negatives           : 436
+positive_rate       : 0.0136
+predicted_positives : 35
+predicted_negatives : 407
+tp                  : 5
+tn                  : 406
+fp                  : 30
+fn                  : 1
+acc                 : 0.9299
+balanced_acc        : 0.8823
+precision           : 0.1429
+recall              : 0.8333
+specificity         : 0.9312
+f1                  : 0.2439
+mcc                 : 0.3276
+auroc               : 0.8937
+average_precision   : 0.5447
+
+TEST METRICS @ SELECTED VALIDATION THRESHOLD
+n                   : 442
+positives           : 6
+negatives           : 436
+positive_rate       : 0.0136
+predicted_positives : 35
+predicted_negatives : 407
+tp                  : 5
+tn                  : 406
+fp                  : 30
+fn                  : 1
+acc                 : 0.9299
+balanced_acc        : 0.8823
+precision           : 0.1429
+recall              : 0.8333
+specificity         : 0.9312
+f1                  : 0.2439
+mcc                 : 0.3276
+auroc               : 0.8937
+average_precision   : 0.5447
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
+wandb:               final_val_acc ▁
+wandb:             final_val_auroc ▁
+wandb: final_val_average_precision ▁
+wandb:      final_val_balanced_acc ▁
+wandb:                final_val_f1 ▁
+wandb:                final_val_fn ▁
+wandb:                final_val_fp ▁
+wandb:               final_val_mcc ▁
+wandb:                 final_val_n ▁
+wandb:                         +70 ...
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 50
+wandb:               final_val_acc 0.91973
+wandb:             final_val_auroc 0.96359
+wandb: final_val_average_precision 0.96286
+wandb:      final_val_balanced_acc 0.91946
+wandb:                final_val_f1 0.91667
+wandb:                final_val_fn 13
+wandb:                final_val_fp 11
+wandb:               final_val_mcc 0.83933
+wandb:                 final_val_n 299
+wandb:                         +70 ...
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /workspace/cruci-classifier/wandb/offline-run-20260614_233538-tgunawgs
+wandb: Find logs at: ./wandb/offline-run-20260614_233538-tgunawgs/logs

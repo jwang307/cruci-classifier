@@ -1,0 +1,28 @@
+[
+  {
+    "domain": "fullCP",
+    "fold": "Green",
+    "train_fasta": "/workspace/cruci-classifier/data/MachineLearning_corrected/fullCP/GreenTraining.fasta",
+    "test_fasta": "/workspace/cruci-classifier/data/MachineLearning_corrected/fullCP/GreenTest.fasta",
+    "train_csv": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/fullCP/Green/prepared/fullCP/Green/train.csv",
+    "test_csv": "/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/fullCP/Green/prepared/fullCP/Green/test.csv",
+    "train": {
+      "n": 1923,
+      "positives": 772,
+      "negatives": 1151,
+      "min_len": 205,
+      "max_len": 687,
+      "stops_cleaned": 1575,
+      "invalid_cleaned": 0
+    },
+    "test": {
+      "n": 561,
+      "positives": 231,
+      "negatives": 330,
+      "min_len": 244,
+      "max_len": 778,
+      "stops_cleaned": 453,
+      "invalid_cleaned": 0
+    }
+  }
+]

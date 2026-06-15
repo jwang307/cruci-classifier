@@ -1,0 +1,2715 @@
+START corrected grid 2026-06-14T23:31:18+00:00
+Running corrected Rdomain Green/Red/Yellow
+root=/workspace/cruci-classifier
+data_root=/workspace/cruci-classifier/data/MachineLearning_corrected
+results_dir=/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614
+domains=Rdomain
+folds=Green Red Yellow
+device=cuda batch_size=32 epochs=50
+Preparing Rdomain/Green
+Rdomain/Green: train=1913 (764/1149 pos/neg), test=522 (209/313 pos/neg)
+Training Rdomain/Green
+Using device: cuda
+Downloading: "https://dl.fbaipublicfiles.com/fair-esm/models/esm2_t12_35M_UR50D.pt" to /root/.cache/torch/hub/checkpoints/esm2_t12_35M_UR50D.pt
+Downloading: "https://dl.fbaipublicfiles.com/fair-esm/regression/esm2_t12_35M_UR50D-contact-regression.pt" to /root/.cache/torch/hub/checkpoints/esm2_t12_35M_UR50D-contact-regression.pt
+Train/val split: train_n=1626, val_n=287, val_pos/neg=115/172
+wandb: Tracking run with wandb version 0.27.2
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /workspace/cruci-classifier/wandb/offline-run-20260614_233136-be9gm5tg
+Epoch 1 | steps 51 | loss 0.7867 | val_n 287 | val_pos/neg 115/172 | val_f1 0.7313 | val_bal_acc 0.7662 | val_auroc 0.8763
+Epoch 2 | steps 102 | loss 0.7231 | val_n 287 | val_pos/neg 115/172 | val_f1 0.7638 | val_bal_acc 0.7996 | val_auroc 0.8810
+Epoch 3 | steps 153 | loss 0.6789 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8279 | val_bal_acc 0.8550 | val_auroc 0.8894
+Epoch 4 | steps 204 | loss 0.6434 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8326 | val_bal_acc 0.8593 | val_auroc 0.8973
+Epoch 5 | steps 255 | loss 0.6158 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8246 | val_bal_acc 0.8535 | val_auroc 0.9030
+Epoch 6 | steps 306 | loss 0.5937 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8349 | val_bal_acc 0.8608 | val_auroc 0.9084
+Epoch 7 | steps 357 | loss 0.5707 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8376 | val_bal_acc 0.8650 | val_auroc 0.9142
+Epoch 8 | steps 408 | loss 0.5533 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8384 | val_bal_acc 0.8651 | val_auroc 0.9201
+Epoch 9 | steps 459 | loss 0.5375 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8326 | val_bal_acc 0.8593 | val_auroc 0.9247
+Epoch 10 | steps 510 | loss 0.5250 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8349 | val_bal_acc 0.8608 | val_auroc 0.9288
+Epoch 11 | steps 561 | loss 0.5113 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8458 | val_bal_acc 0.8709 | val_auroc 0.9320
+Epoch 12 | steps 612 | loss 0.5015 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8571 | val_bal_acc 0.8824 | val_auroc 0.9353
+Epoch 13 | steps 663 | loss 0.4893 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8465 | val_bal_acc 0.8737 | val_auroc 0.9379
+Epoch 14 | steps 714 | loss 0.4814 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8608 | val_bal_acc 0.8853 | val_auroc 0.9406
+Epoch 15 | steps 765 | loss 0.4725 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8523 | val_bal_acc 0.8781 | val_auroc 0.9442
+Epoch 16 | steps 816 | loss 0.4635 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8509 | val_bal_acc 0.8752 | val_auroc 0.9461
+Epoch 17 | steps 867 | loss 0.4557 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8546 | val_bal_acc 0.8781 | val_auroc 0.9474
+Epoch 18 | steps 918 | loss 0.4497 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8608 | val_bal_acc 0.8853 | val_auroc 0.9487
+Epoch 19 | steps 969 | loss 0.4438 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8595 | val_bal_acc 0.8853 | val_auroc 0.9504
+Epoch 20 | steps 1020 | loss 0.4409 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8546 | val_bal_acc 0.8781 | val_auroc 0.9521
+Epoch 21 | steps 1071 | loss 0.4309 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8571 | val_bal_acc 0.8810 | val_auroc 0.9530
+Epoch 22 | steps 1122 | loss 0.4255 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8571 | val_bal_acc 0.8810 | val_auroc 0.9553
+Epoch 23 | steps 1173 | loss 0.4208 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8571 | val_bal_acc 0.8810 | val_auroc 0.9563
+Epoch 24 | steps 1224 | loss 0.4180 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8750 | val_bal_acc 0.8984 | val_auroc 0.9571
+Epoch 25 | steps 1275 | loss 0.4115 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8670 | val_bal_acc 0.8897 | val_auroc 0.9584
+Epoch 26 | steps 1326 | loss 0.4089 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8718 | val_bal_acc 0.8941 | val_auroc 0.9595
+Epoch 27 | steps 1377 | loss 0.4026 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8745 | val_bal_acc 0.8955 | val_auroc 0.9605
+Epoch 28 | steps 1428 | loss 0.3997 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8596 | val_bal_acc 0.8825 | val_auroc 0.9609
+Epoch 29 | steps 1479 | loss 0.3952 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8596 | val_bal_acc 0.8825 | val_auroc 0.9615
+Epoch 30 | steps 1530 | loss 0.3917 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8692 | val_bal_acc 0.8926 | val_auroc 0.9625
+Epoch 31 | steps 1581 | loss 0.3896 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8755 | val_bal_acc 0.8970 | val_auroc 0.9639
+Epoch 32 | steps 1632 | loss 0.3857 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8745 | val_bal_acc 0.8955 | val_auroc 0.9646
+Epoch 33 | steps 1683 | loss 0.3804 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8807 | val_bal_acc 0.8970 | val_auroc 0.9657
+Epoch 34 | steps 1734 | loss 0.3817 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8850 | val_bal_acc 0.9028 | val_auroc 0.9661
+Epoch 35 | steps 1785 | loss 0.3764 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8793 | val_bal_acc 0.8999 | val_auroc 0.9669
+Epoch 36 | steps 1836 | loss 0.3732 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8800 | val_bal_acc 0.8985 | val_auroc 0.9674
+Epoch 37 | steps 1887 | loss 0.3710 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8755 | val_bal_acc 0.8970 | val_auroc 0.9677
+Epoch 38 | steps 1938 | loss 0.3684 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8899 | val_bal_acc 0.9072 | val_auroc 0.9680
+Epoch 39 | steps 1989 | loss 0.3664 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8824 | val_bal_acc 0.9042 | val_auroc 0.9686
+Epoch 40 | steps 2040 | loss 0.3639 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8870 | val_bal_acc 0.9085 | val_auroc 0.9688
+Epoch 41 | steps 2091 | loss 0.3616 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8870 | val_bal_acc 0.9085 | val_auroc 0.9699
+Epoch 42 | steps 2142 | loss 0.3606 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8927 | val_bal_acc 0.9115 | val_auroc 0.9702
+Epoch 43 | steps 2193 | loss 0.3576 | val_n 287 | val_pos/neg 115/172 | val_f1 0.9004 | val_bal_acc 0.9173 | val_auroc 0.9704
+Epoch 44 | steps 2244 | loss 0.3538 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8898 | val_bal_acc 0.9100 | val_auroc 0.9712
+Epoch 45 | steps 2295 | loss 0.3542 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8974 | val_bal_acc 0.9158 | val_auroc 0.9717
+Epoch 46 | steps 2346 | loss 0.3512 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8880 | val_bal_acc 0.9100 | val_auroc 0.9719
+Epoch 47 | steps 2397 | loss 0.3487 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8974 | val_bal_acc 0.9158 | val_auroc 0.9724
+Epoch 48 | steps 2448 | loss 0.3507 | val_n 287 | val_pos/neg 115/172 | val_f1 0.8969 | val_bal_acc 0.9115 | val_auroc 0.9725
+Epoch 49 | steps 2499 | loss 0.3443 | val_n 287 | val_pos/neg 115/172 | val_f1 0.9013 | val_bal_acc 0.9187 | val_auroc 0.9730
+Epoch 50 | steps 2550 | loss 0.3434 | val_n 287 | val_pos/neg 115/172 | val_f1 0.9004 | val_bal_acc 0.9173 | val_auroc 0.9737
+
+SELECTED VALIDATION THRESHOLD: 0.516700
+
+TEST METRICS
+n                   : 522
+positives           : 209
+negatives           : 313
+positive_rate       : 0.4004
+predicted_positives : 205
+predicted_negatives : 317
+tp                  : 179
+tn                  : 287
+fp                  : 26
+fn                  : 30
+acc                 : 0.8927
+balanced_acc        : 0.8867
+precision           : 0.8732
+recall              : 0.8565
+specificity         : 0.9169
+f1                  : 0.8647
+mcc                 : 0.7760
+auroc               : 0.9484
+average_precision   : 0.9424
+
+TEST METRICS @ SELECTED VALIDATION THRESHOLD
+n                   : 522
+positives           : 209
+negatives           : 313
+positive_rate       : 0.4004
+predicted_positives : 204
+predicted_negatives : 318
+tp                  : 179
+tn                  : 288
+fp                  : 25
+fn                  : 30
+acc                 : 0.8946
+balanced_acc        : 0.8883
+precision           : 0.8775
+recall              : 0.8565
+specificity         : 0.9201
+f1                  : 0.8668
+mcc                 : 0.7798
+auroc               : 0.9484
+average_precision   : 0.9424
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇██
+wandb:               final_val_acc ▁
+wandb:             final_val_auroc ▁
+wandb: final_val_average_precision ▁
+wandb:      final_val_balanced_acc ▁
+wandb:                final_val_f1 ▁
+wandb:                final_val_fn ▁
+wandb:                final_val_fp ▁
+wandb:               final_val_mcc ▁
+wandb:                 final_val_n ▁
+wandb:                         +70 ...
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 50
+wandb:               final_val_acc 0.91986
+wandb:             final_val_auroc 0.973
+wandb: final_val_average_precision 0.96373
+wandb:      final_val_balanced_acc 0.91873
+wandb:                final_val_f1 0.90129
+wandb:                final_val_fn 10
+wandb:                final_val_fp 13
+wandb:               final_val_mcc 0.83405
+wandb:                 final_val_n 287
+wandb:                         +70 ...
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /workspace/cruci-classifier/wandb/offline-run-20260614_233136-be9gm5tg
+wandb: Find logs at: ./wandb/offline-run-20260614_233136-be9gm5tg/logs
+Evaluating Rdomain/Green with selected_threshold=0.5166996717453003
+EVALUATION METRICS
+n                   : 522
+positives           : 209
+negatives           : 313
+positive_rate       : 0.4004
+predicted_positives : 205
+predicted_negatives : 317
+tp                  : 179
+tn                  : 287
+fp                  : 26
+fn                  : 30
+acc                 : 0.8927
+balanced_acc        : 0.8867
+precision           : 0.8732
+recall              : 0.8565
+specificity         : 0.9169
+f1                  : 0.8647
+mcc                 : 0.7760
+auroc               : 0.9484
+average_precision   : 0.9424
+avg_precision      : 0.9424
+best_threshold (max F1): 0.4029
+HF upload attempt 1/3: /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/Rdomain/Green -> jwang003/cruci-esm35m-grid/grid_esm35m_corrected_20260614/Rdomain/Green
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[AProcessing Files (5 / 5)      : 100%|██████████|  109kB /  109kB, 10.5kB/s  
+New Data Upload               : 100%|██████████|  109kB /  109kB, 10.5kB/s  [A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[AProcessing Files (5 / 5)      : 100%|██████████|  109kB /  109kB, 9.86kB/s  
+New Data Upload               : 100%|██████████|  109kB /  109kB, 9.86kB/s  
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            
+https://huggingface.co/datasets/jwang003/cruci-esm35m-grid/commit/448702a8e68a64c456ae7a5c1224be222cfb509c
+Preparing Rdomain/Red
+Rdomain/Red: train=1992 (968/1024 pos/neg), test=442 (6/436 pos/neg)
+Training Rdomain/Red
+Using device: cuda
+Train/val split: train_n=1693, val_n=299, val_pos/neg=145/154
+wandb: Tracking run with wandb version 0.27.2
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /workspace/cruci-classifier/wandb/offline-run-20260614_233538-tgunawgs
+Epoch 1 | steps 53 | loss 0.6849 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8049 | val_bal_acc 0.8349 | val_auroc 0.8965
+Epoch 2 | steps 106 | loss 0.6407 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8539 | val_bal_acc 0.8671 | val_auroc 0.9008
+Epoch 3 | steps 159 | loss 0.6063 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8582 | val_bal_acc 0.8706 | val_auroc 0.9073
+Epoch 4 | steps 212 | loss 0.5783 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8339 | val_bal_acc 0.8310 | val_auroc 0.9136
+Epoch 5 | steps 265 | loss 0.5526 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8622 | val_bal_acc 0.8687 | val_auroc 0.9206
+Epoch 6 | steps 318 | loss 0.5307 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8652 | val_bal_acc 0.8720 | val_auroc 0.9254
+Epoch 7 | steps 371 | loss 0.5125 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8657 | val_bal_acc 0.8773 | val_auroc 0.9324
+Epoch 8 | steps 424 | loss 0.4966 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8657 | val_bal_acc 0.8773 | val_auroc 0.9367
+Epoch 9 | steps 477 | loss 0.4841 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8696 | val_bal_acc 0.8781 | val_auroc 0.9391
+Epoch 10 | steps 530 | loss 0.4695 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8741 | val_bal_acc 0.8791 | val_auroc 0.9416
+Epoch 11 | steps 583 | loss 0.4583 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8683 | val_bal_acc 0.8752 | val_auroc 0.9433
+Epoch 12 | steps 636 | loss 0.4478 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8800 | val_bal_acc 0.8880 | val_auroc 0.9446
+Epoch 13 | steps 689 | loss 0.4384 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8800 | val_bal_acc 0.8880 | val_auroc 0.9457
+Epoch 14 | steps 742 | loss 0.4298 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8732 | val_bal_acc 0.8789 | val_auroc 0.9469
+Epoch 15 | steps 795 | loss 0.4215 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8800 | val_bal_acc 0.8880 | val_auroc 0.9482
+Epoch 16 | steps 848 | loss 0.4136 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8794 | val_bal_acc 0.8854 | val_auroc 0.9493
+Epoch 17 | steps 901 | loss 0.4074 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8874 | val_bal_acc 0.8898 | val_auroc 0.9501
+Epoch 18 | steps 954 | loss 0.4004 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8809 | val_bal_acc 0.8882 | val_auroc 0.9506
+Epoch 19 | steps 1007 | loss 0.3949 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8889 | val_bal_acc 0.8951 | val_auroc 0.9517
+Epoch 20 | steps 1060 | loss 0.3913 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8849 | val_bal_acc 0.8917 | val_auroc 0.9528
+Epoch 21 | steps 1113 | loss 0.3841 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8897 | val_bal_acc 0.8929 | val_auroc 0.9532
+Epoch 22 | steps 1166 | loss 0.3781 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8881 | val_bal_acc 0.8949 | val_auroc 0.9536
+Epoch 23 | steps 1219 | loss 0.3743 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8982 | val_bal_acc 0.9024 | val_auroc 0.9541
+Epoch 24 | steps 1272 | loss 0.3698 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9021 | val_bal_acc 0.9059 | val_auroc 0.9546
+Epoch 25 | steps 1325 | loss 0.3679 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8919 | val_bal_acc 0.8935 | val_auroc 0.9554
+Epoch 26 | steps 1378 | loss 0.3620 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9021 | val_bal_acc 0.9059 | val_auroc 0.9558
+Epoch 27 | steps 1431 | loss 0.3584 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9034 | val_bal_acc 0.9063 | val_auroc 0.9562
+Epoch 28 | steps 1484 | loss 0.3561 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9010 | val_bal_acc 0.9032 | val_auroc 0.9570
+Epoch 29 | steps 1537 | loss 0.3516 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9066 | val_bal_acc 0.9095 | val_auroc 0.9572
+Epoch 30 | steps 1590 | loss 0.3481 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9072 | val_bal_acc 0.9097 | val_auroc 0.9580
+Epoch 31 | steps 1643 | loss 0.3491 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9066 | val_bal_acc 0.9095 | val_auroc 0.9583
+Epoch 32 | steps 1696 | loss 0.3424 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9091 | val_bal_acc 0.9126 | val_auroc 0.9586
+Epoch 33 | steps 1749 | loss 0.3387 | val_n 299 | val_pos/neg 145/154 | val_f1 0.8993 | val_bal_acc 0.9004 | val_auroc 0.9590
+Epoch 34 | steps 1802 | loss 0.3360 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9046 | val_bal_acc 0.9089 | val_auroc 0.9593
+Epoch 35 | steps 1855 | loss 0.3340 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9072 | val_bal_acc 0.9097 | val_auroc 0.9598
+Epoch 36 | steps 1908 | loss 0.3313 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9017 | val_bal_acc 0.9034 | val_auroc 0.9602
+Epoch 37 | steps 1961 | loss 0.3301 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9041 | val_bal_acc 0.9065 | val_auroc 0.9602
+Epoch 38 | steps 2014 | loss 0.3271 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9123 | val_bal_acc 0.9158 | val_auroc 0.9608
+Epoch 39 | steps 2067 | loss 0.3237 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9046 | val_bal_acc 0.9089 | val_auroc 0.9608
+Epoch 40 | steps 2120 | loss 0.3221 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9123 | val_bal_acc 0.9158 | val_auroc 0.9610
+Epoch 41 | steps 2173 | loss 0.3193 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9097 | val_bal_acc 0.9128 | val_auroc 0.9613
+Epoch 42 | steps 2226 | loss 0.3175 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9129 | val_bal_acc 0.9160 | val_auroc 0.9618
+Epoch 43 | steps 2279 | loss 0.3164 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9123 | val_bal_acc 0.9158 | val_auroc 0.9622
+Epoch 44 | steps 2332 | loss 0.3139 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9123 | val_bal_acc 0.9158 | val_auroc 0.9623
+Epoch 45 | steps 2385 | loss 0.3117 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9123 | val_bal_acc 0.9158 | val_auroc 0.9626
+Epoch 46 | steps 2438 | loss 0.3101 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9024 | val_bal_acc 0.9036 | val_auroc 0.9627
+Epoch 47 | steps 2491 | loss 0.3080 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9129 | val_bal_acc 0.9160 | val_auroc 0.9632
+Epoch 48 | steps 2544 | loss 0.3079 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9030 | val_bal_acc 0.9038 | val_auroc 0.9635
+Epoch 49 | steps 2597 | loss 0.3076 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9167 | val_bal_acc 0.9195 | val_auroc 0.9636
+Epoch 50 | steps 2650 | loss 0.3036 | val_n 299 | val_pos/neg 145/154 | val_f1 0.9129 | val_bal_acc 0.9160 | val_auroc 0.9639
+
+SELECTED VALIDATION THRESHOLD: 0.482631
+
+TEST METRICS
+n                   : 442
+positives           : 6
+negatives           : 436
+positive_rate       : 0.0136
+predicted_positives : 35
+predicted_negatives : 407
+tp                  : 5
+tn                  : 406
+fp                  : 30
+fn                  : 1
+acc                 : 0.9299
+balanced_acc        : 0.8823
+precision           : 0.1429
+recall              : 0.8333
+specificity         : 0.9312
+f1                  : 0.2439
+mcc                 : 0.3276
+auroc               : 0.8937
+average_precision   : 0.5447
+
+TEST METRICS @ SELECTED VALIDATION THRESHOLD
+n                   : 442
+positives           : 6
+negatives           : 436
+positive_rate       : 0.0136
+predicted_positives : 35
+predicted_negatives : 407
+tp                  : 5
+tn                  : 406
+fp                  : 30
+fn                  : 1
+acc                 : 0.9299
+balanced_acc        : 0.8823
+precision           : 0.1429
+recall              : 0.8333
+specificity         : 0.9312
+f1                  : 0.2439
+mcc                 : 0.3276
+auroc               : 0.8937
+average_precision   : 0.5447
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
+wandb:               final_val_acc ▁
+wandb:             final_val_auroc ▁
+wandb: final_val_average_precision ▁
+wandb:      final_val_balanced_acc ▁
+wandb:                final_val_f1 ▁
+wandb:                final_val_fn ▁
+wandb:                final_val_fp ▁
+wandb:               final_val_mcc ▁
+wandb:                 final_val_n ▁
+wandb:                         +70 ...
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 50
+wandb:               final_val_acc 0.91973
+wandb:             final_val_auroc 0.96359
+wandb: final_val_average_precision 0.96286
+wandb:      final_val_balanced_acc 0.91946
+wandb:                final_val_f1 0.91667
+wandb:                final_val_fn 13
+wandb:                final_val_fp 11
+wandb:               final_val_mcc 0.83933
+wandb:                 final_val_n 299
+wandb:                         +70 ...
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /workspace/cruci-classifier/wandb/offline-run-20260614_233538-tgunawgs
+wandb: Find logs at: ./wandb/offline-run-20260614_233538-tgunawgs/logs
+Evaluating Rdomain/Red with selected_threshold=0.48263058066368103
+EVALUATION METRICS
+n                   : 442
+positives           : 6
+negatives           : 436
+positive_rate       : 0.0136
+predicted_positives : 35
+predicted_negatives : 407
+tp                  : 5
+tn                  : 406
+fp                  : 30
+fn                  : 1
+acc                 : 0.9299
+balanced_acc        : 0.8823
+precision           : 0.1429
+recall              : 0.8333
+specificity         : 0.9312
+f1                  : 0.2439
+mcc                 : 0.3276
+auroc               : 0.8937
+average_precision   : 0.5447
+avg_precision      : 0.5447
+best_threshold (max F1): 0.7837
+HF upload attempt 1/3: /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/Rdomain/Red -> jwang003/cruci-esm35m-grid/grid_esm35m_corrected_20260614/Rdomain/Red
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[AProcessing Files (5 / 5)      : 100%|██████████|  112kB /  112kB, 10.8kB/s  
+New Data Upload               : 100%|██████████|  112kB /  112kB, 10.8kB/s  [A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[AProcessing Files (5 / 5)      : 100%|██████████|  112kB /  112kB, 10.1kB/s  
+New Data Upload               : 100%|██████████|  112kB /  112kB, 10.1kB/s  
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            
+https://huggingface.co/datasets/jwang003/cruci-esm35m-grid/commit/5bd56a9a01e3fdcc755410260e1740f36f353c6d
+Preparing Rdomain/Yellow
+Rdomain/Yellow: train=1870 (894/976 pos/neg), test=564 (80/484 pos/neg)
+Training Rdomain/Yellow
+Using device: cuda
+Train/val split: train_n=1590, val_n=280, val_pos/neg=134/146
+wandb: Tracking run with wandb version 0.27.2
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /workspace/cruci-classifier/wandb/offline-run-20260614_233945-t3hp0pi6
+Epoch 1 | steps 50 | loss 0.6733 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8120 | val_bal_acc 0.8208 | val_auroc 0.8665
+Epoch 2 | steps 100 | loss 0.6059 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8132 | val_bal_acc 0.8183 | val_auroc 0.8721
+Epoch 3 | steps 150 | loss 0.5613 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8085 | val_bal_acc 0.8089 | val_auroc 0.8757
+Epoch 4 | steps 200 | loss 0.5254 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8140 | val_bal_acc 0.8130 | val_auroc 0.8825
+Epoch 5 | steps 250 | loss 0.4998 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8169 | val_bal_acc 0.8164 | val_auroc 0.8874
+Epoch 6 | steps 300 | loss 0.4774 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8231 | val_bal_acc 0.8261 | val_auroc 0.8919
+Epoch 7 | steps 350 | loss 0.4566 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8286 | val_bal_acc 0.8301 | val_auroc 0.8955
+Epoch 8 | steps 400 | loss 0.4396 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8339 | val_bal_acc 0.8395 | val_auroc 0.8994
+Epoch 9 | steps 450 | loss 0.4246 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8370 | val_bal_acc 0.8429 | val_auroc 0.9026
+Epoch 10 | steps 500 | loss 0.4108 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8327 | val_bal_acc 0.8391 | val_auroc 0.9058
+Epoch 11 | steps 550 | loss 0.3986 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8231 | val_bal_acc 0.8342 | val_auroc 0.9098
+Epoch 12 | steps 600 | loss 0.3896 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8235 | val_bal_acc 0.8370 | val_auroc 0.9123
+Epoch 13 | steps 650 | loss 0.3792 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8365 | val_bal_acc 0.8454 | val_auroc 0.9139
+Epoch 14 | steps 700 | loss 0.3694 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8365 | val_bal_acc 0.8454 | val_auroc 0.9157
+Epoch 15 | steps 750 | loss 0.3614 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8429 | val_bal_acc 0.8522 | val_auroc 0.9174
+Epoch 16 | steps 800 | loss 0.3534 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8390 | val_bal_acc 0.8460 | val_auroc 0.9187
+Epoch 17 | steps 850 | loss 0.3461 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8417 | val_bal_acc 0.8519 | val_auroc 0.9196
+Epoch 18 | steps 900 | loss 0.3400 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8406 | val_bal_acc 0.8438 | val_auroc 0.9206
+Epoch 19 | steps 950 | loss 0.3344 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8421 | val_bal_acc 0.8494 | val_auroc 0.9216
+Epoch 20 | steps 1000 | loss 0.3289 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8379 | val_bal_acc 0.8510 | val_auroc 0.9223
+Epoch 21 | steps 1050 | loss 0.3247 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8509 | val_bal_acc 0.8544 | val_auroc 0.9237
+Epoch 22 | steps 1100 | loss 0.3198 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8530 | val_bal_acc 0.8550 | val_auroc 0.9245
+Epoch 23 | steps 1150 | loss 0.3163 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8582 | val_bal_acc 0.8640 | val_auroc 0.9255
+Epoch 24 | steps 1200 | loss 0.3106 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8509 | val_bal_acc 0.8544 | val_auroc 0.9261
+Epoch 25 | steps 1250 | loss 0.3073 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8625 | val_bal_acc 0.8678 | val_auroc 0.9268
+Epoch 26 | steps 1300 | loss 0.3038 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8538 | val_bal_acc 0.8628 | val_auroc 0.9275
+Epoch 27 | steps 1350 | loss 0.3001 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8571 | val_bal_acc 0.8662 | val_auroc 0.9275
+Epoch 28 | steps 1400 | loss 0.2965 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8571 | val_bal_acc 0.8662 | val_auroc 0.9280
+Epoch 29 | steps 1450 | loss 0.2948 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8571 | val_bal_acc 0.8662 | val_auroc 0.9286
+Epoch 30 | steps 1500 | loss 0.2914 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8489 | val_bal_acc 0.8513 | val_auroc 0.9286
+Epoch 31 | steps 1550 | loss 0.2882 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8755 | val_bal_acc 0.8815 | val_auroc 0.9295
+Epoch 32 | steps 1600 | loss 0.2846 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8755 | val_bal_acc 0.8815 | val_auroc 0.9297
+Epoch 33 | steps 1650 | loss 0.2833 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8478 | val_bal_acc 0.8510 | val_auroc 0.9300
+Epoch 34 | steps 1700 | loss 0.2795 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8478 | val_bal_acc 0.8510 | val_auroc 0.9304
+Epoch 35 | steps 1750 | loss 0.2780 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8755 | val_bal_acc 0.8815 | val_auroc 0.9307
+Epoch 36 | steps 1800 | loss 0.2757 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8755 | val_bal_acc 0.8815 | val_auroc 0.9310
+Epoch 37 | steps 1850 | loss 0.2738 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8755 | val_bal_acc 0.8815 | val_auroc 0.9318
+Epoch 38 | steps 1900 | loss 0.2698 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8551 | val_bal_acc 0.8581 | val_auroc 0.9316
+Epoch 39 | steps 1950 | loss 0.2690 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8635 | val_bal_acc 0.8681 | val_auroc 0.9321
+Epoch 40 | steps 2000 | loss 0.2670 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8731 | val_bal_acc 0.8783 | val_auroc 0.9324
+Epoch 41 | steps 2050 | loss 0.2655 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8667 | val_bal_acc 0.8715 | val_auroc 0.9325
+Epoch 42 | steps 2100 | loss 0.2635 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8635 | val_bal_acc 0.8681 | val_auroc 0.9330
+Epoch 43 | steps 2150 | loss 0.2626 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8731 | val_bal_acc 0.8783 | val_auroc 0.9337
+Epoch 44 | steps 2200 | loss 0.2595 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8755 | val_bal_acc 0.8815 | val_auroc 0.9339
+Epoch 45 | steps 2250 | loss 0.2582 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8692 | val_bal_acc 0.8771 | val_auroc 0.9341
+Epoch 46 | steps 2300 | loss 0.2566 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8699 | val_bal_acc 0.8749 | val_auroc 0.9342
+Epoch 47 | steps 2350 | loss 0.2553 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8708 | val_bal_acc 0.8752 | val_auroc 0.9347
+Epoch 48 | steps 2400 | loss 0.2550 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8779 | val_bal_acc 0.8846 | val_auroc 0.9351
+Epoch 49 | steps 2450 | loss 0.2541 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8788 | val_bal_acc 0.8849 | val_auroc 0.9356
+Epoch 50 | steps 2500 | loss 0.2511 | val_n 280 | val_pos/neg 134/146 | val_f1 0.8788 | val_bal_acc 0.8849 | val_auroc 0.9358
+/workspace/cruci-classifier/classifier/metrics.py:23: RuntimeWarning: invalid value encountered in divide
+  f1 = np.where(precision + recall > 0, 2 * precision * recall / (precision + recall), 0.0)
+
+SELECTED VALIDATION THRESHOLD: 0.516550
+
+TEST METRICS
+n                   : 564
+positives           : 80
+negatives           : 484
+positive_rate       : 0.1418
+predicted_positives : 168
+predicted_negatives : 396
+tp                  : 59
+tn                  : 375
+fp                  : 109
+fn                  : 21
+acc                 : 0.7695
+balanced_acc        : 0.7561
+precision           : 0.3512
+recall              : 0.7375
+specificity         : 0.7748
+f1                  : 0.4758
+mcc                 : 0.3908
+auroc               : 0.8388
+average_precision   : 0.6674
+
+TEST METRICS @ SELECTED VALIDATION THRESHOLD
+n                   : 564
+positives           : 80
+negatives           : 484
+positive_rate       : 0.1418
+predicted_positives : 159
+predicted_negatives : 405
+tp                  : 57
+tn                  : 382
+fp                  : 102
+fn                  : 23
+acc                 : 0.7784
+balanced_acc        : 0.7509
+precision           : 0.3585
+recall              : 0.7125
+specificity         : 0.7893
+f1                  : 0.4770
+mcc                 : 0.3891
+auroc               : 0.8388
+average_precision   : 0.6674
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
+wandb:               final_val_acc ▁
+wandb:             final_val_auroc ▁
+wandb: final_val_average_precision ▁
+wandb:      final_val_balanced_acc ▁
+wandb:                final_val_f1 ▁
+wandb:                final_val_fn ▁
+wandb:                final_val_fp ▁
+wandb:               final_val_mcc ▁
+wandb:                 final_val_n ▁
+wandb:                         +70 ...
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 50
+wandb:               final_val_acc 0.88571
+wandb:             final_val_auroc 0.9356
+wandb: final_val_average_precision 0.91297
+wandb:      final_val_balanced_acc 0.88489
+wandb:                final_val_f1 0.87879
+wandb:                final_val_fn 18
+wandb:                final_val_fp 14
+wandb:               final_val_mcc 0.77104
+wandb:                 final_val_n 280
+wandb:                         +70 ...
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /workspace/cruci-classifier/wandb/offline-run-20260614_233945-t3hp0pi6
+wandb: Find logs at: ./wandb/offline-run-20260614_233945-t3hp0pi6/logs
+Evaluating Rdomain/Yellow with selected_threshold=0.5165499448776245
+EVALUATION METRICS
+n                   : 564
+positives           : 80
+negatives           : 484
+positive_rate       : 0.1418
+predicted_positives : 168
+predicted_negatives : 396
+tp                  : 59
+tn                  : 375
+fp                  : 109
+fn                  : 21
+acc                 : 0.7695
+balanced_acc        : 0.7561
+precision           : 0.3512
+recall              : 0.7375
+specificity         : 0.7748
+f1                  : 0.4758
+mcc                 : 0.3908
+auroc               : 0.8388
+average_precision   : 0.6674
+avg_precision      : 0.6674
+best_threshold (max F1): 0.7339
+HF upload attempt 1/3: /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/Rdomain/Yellow -> jwang003/cruci-esm35m-grid/grid_esm35m_corrected_20260614/Rdomain/Yellow
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[AProcessing Files (5 / 5)      : 100%|██████████|  110kB /  110kB, 10.6kB/s  
+New Data Upload               : 100%|██████████|  110kB /  110kB, 10.6kB/s  [A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[AProcessing Files (5 / 5)      : 100%|██████████|  110kB /  110kB, 9.86kB/s  
+New Data Upload               : 100%|██████████|  110kB /  110kB, 9.86kB/s  
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            
+https://huggingface.co/datasets/jwang003/cruci-esm35m-grid/commit/f835bc69180b593a9e81f1e1c9a862bd27494a30
+Wrote /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/aggregate_metrics.csv rows=3
+Wrote /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/all_oof_predictions.csv rows=1528
+Wrote /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/run_manifest.json
+HF upload attempt 1/3: /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614 -> jwang003/cruci-esm35m-grid/grid_esm35m_corrected_20260614
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 5 files]                 : 100%|██████████|  124kB /  124kB            [A[A[A[A[A[A[A[A[A[A[AProcessing Files (15 / 15)    : 100%|██████████|  332kB /  332kB,   ???B/s  
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A[A[A
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 5 files]                 : 100%|██████████|  152kB /  152kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 5 files]                 : 100%|██████████|  132kB /  132kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 5 files]                 : 100%|██████████|  114kB /  114kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 5 files]                 : 100%|██████████|  144kB /  144kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A[A
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 5 files]                 : 100%|██████████|  132kB /  132kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 5 files]                 : 100%|██████████|  114kB /  114kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A[A
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 5 files]                 : 100%|██████████|  132kB /  132kB            [A[A[A[A[A[A[A[A[A[A[AProcessing Files (15 / 15)    : 100%|██████████|  332kB /  332kB, 31.1kB/s  
+New Data Upload               : |          |  0.00B /  0.00B,  0.00B/s  
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            
+  [+ 5 files]                 : 100%|██████████|  132kB /  132kB            
+https://huggingface.co/datasets/jwang003/cruci-esm35m-grid/commit/36dbb4508a2d37edf60bb331dcb35fd56ab8c2ba
+Running corrected fullCP Green
+root=/workspace/cruci-classifier
+data_root=/workspace/cruci-classifier/data/MachineLearning_corrected
+results_dir=/workspace/cruci-classifier/results/grid_esm35m_corrected_20260614
+domains=fullCP
+folds=Green
+device=cuda batch_size=32 epochs=50
+Preparing fullCP/Green
+fullCP/Green: train=1923 (772/1151 pos/neg), test=561 (231/330 pos/neg)
+Training fullCP/Green
+Using device: cuda
+Train/val split: train_n=1634, val_n=289, val_pos/neg=116/173
+wandb: Tracking run with wandb version 0.27.2
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /workspace/cruci-classifier/wandb/offline-run-20260614_234356-56x6ij1o
+Epoch 1 | steps 52 | loss 0.8107 | val_n 289 | val_pos/neg 116/173 | val_f1 0.7822 | val_bal_acc 0.8203 | val_auroc 0.8759
+Epoch 2 | steps 104 | loss 0.7610 | val_n 289 | val_pos/neg 116/173 | val_f1 0.6478 | val_bal_acc 0.6578 | val_auroc 0.8764
+Epoch 3 | steps 156 | loss 0.7225 | val_n 289 | val_pos/neg 116/173 | val_f1 0.7419 | val_bal_acc 0.7945 | val_auroc 0.8857
+Epoch 4 | steps 208 | loss 0.7001 | val_n 289 | val_pos/neg 116/173 | val_f1 0.7982 | val_bal_acc 0.8316 | val_auroc 0.8882
+Epoch 5 | steps 260 | loss 0.6662 | val_n 289 | val_pos/neg 116/173 | val_f1 0.7897 | val_bal_acc 0.8243 | val_auroc 0.8934
+Epoch 6 | steps 312 | loss 0.6458 | val_n 289 | val_pos/neg 116/173 | val_f1 0.7668 | val_bal_acc 0.8025 | val_auroc 0.8981
+Epoch 7 | steps 364 | loss 0.6257 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8070 | val_bal_acc 0.8387 | val_auroc 0.9038
+Epoch 8 | steps 416 | loss 0.6142 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8106 | val_bal_acc 0.8416 | val_auroc 0.9080
+Epoch 9 | steps 468 | loss 0.5916 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8095 | val_bal_acc 0.8404 | val_auroc 0.9111
+Epoch 10 | steps 520 | loss 0.5780 | val_n 289 | val_pos/neg 116/173 | val_f1 0.7823 | val_bal_acc 0.8169 | val_auroc 0.9136
+Epoch 11 | steps 572 | loss 0.5694 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8194 | val_bal_acc 0.8488 | val_auroc 0.9176
+Epoch 12 | steps 624 | loss 0.5537 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8174 | val_bal_acc 0.8474 | val_auroc 0.9202
+Epoch 13 | steps 676 | loss 0.5587 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8000 | val_bal_acc 0.8328 | val_auroc 0.9216
+Epoch 14 | steps 728 | loss 0.5431 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8241 | val_bal_acc 0.8518 | val_auroc 0.9243
+Epoch 15 | steps 780 | loss 0.5275 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8205 | val_bal_acc 0.8502 | val_auroc 0.9265
+Epoch 16 | steps 832 | loss 0.5192 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8214 | val_bal_acc 0.8503 | val_auroc 0.9283
+Epoch 17 | steps 884 | loss 0.5269 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8201 | val_bal_acc 0.8502 | val_auroc 0.9292
+Epoch 18 | steps 936 | loss 0.5102 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8174 | val_bal_acc 0.8474 | val_auroc 0.9318
+Epoch 19 | steps 988 | loss 0.5134 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8257 | val_bal_acc 0.8532 | val_auroc 0.9334
+Epoch 20 | steps 1040 | loss 0.4908 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8219 | val_bal_acc 0.8504 | val_auroc 0.9360
+Epoch 21 | steps 1092 | loss 0.4845 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8288 | val_bal_acc 0.8561 | val_auroc 0.9368
+Epoch 22 | steps 1144 | loss 0.4802 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8299 | val_bal_acc 0.8588 | val_auroc 0.9375
+Epoch 23 | steps 1196 | loss 0.4769 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8384 | val_bal_acc 0.8647 | val_auroc 0.9388
+Epoch 24 | steps 1248 | loss 0.4777 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8458 | val_bal_acc 0.8704 | val_auroc 0.9398
+Epoch 25 | steps 1300 | loss 0.4670 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8245 | val_bal_acc 0.8544 | val_auroc 0.9406
+Epoch 26 | steps 1352 | loss 0.4626 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8251 | val_bal_acc 0.8532 | val_auroc 0.9420
+Epoch 27 | steps 1404 | loss 0.4598 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8435 | val_bal_acc 0.8690 | val_auroc 0.9428
+Epoch 28 | steps 1456 | loss 0.4689 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8511 | val_bal_acc 0.8761 | val_auroc 0.9435
+Epoch 29 | steps 1508 | loss 0.4647 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8356 | val_bal_acc 0.8618 | val_auroc 0.9445
+Epoch 30 | steps 1560 | loss 0.4474 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8384 | val_bal_acc 0.8647 | val_auroc 0.9452
+Epoch 31 | steps 1612 | loss 0.4418 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8288 | val_bal_acc 0.8561 | val_auroc 0.9461
+Epoch 32 | steps 1664 | loss 0.4369 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8458 | val_bal_acc 0.8704 | val_auroc 0.9466
+Epoch 33 | steps 1716 | loss 0.4332 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8500 | val_bal_acc 0.8761 | val_auroc 0.9469
+Epoch 34 | steps 1768 | loss 0.4312 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8458 | val_bal_acc 0.8704 | val_auroc 0.9478
+Epoch 35 | steps 1820 | loss 0.4257 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8444 | val_bal_acc 0.8690 | val_auroc 0.9481
+Epoch 36 | steps 1872 | loss 0.4326 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8559 | val_bal_acc 0.8804 | val_auroc 0.9486
+Epoch 37 | steps 1924 | loss 0.4216 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8448 | val_bal_acc 0.8704 | val_auroc 0.9490
+Epoch 38 | steps 1976 | loss 0.4209 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8361 | val_bal_acc 0.8645 | val_auroc 0.9495
+Epoch 39 | steps 2028 | loss 0.4241 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8608 | val_bal_acc 0.8847 | val_auroc 0.9498
+Epoch 40 | steps 2080 | loss 0.4137 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8458 | val_bal_acc 0.8704 | val_auroc 0.9502
+Epoch 41 | steps 2132 | loss 0.4096 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8398 | val_bal_acc 0.8661 | val_auroc 0.9511
+Epoch 42 | steps 2184 | loss 0.4075 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8448 | val_bal_acc 0.8704 | val_auroc 0.9514
+Epoch 43 | steps 2236 | loss 0.4070 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8496 | val_bal_acc 0.8733 | val_auroc 0.9524
+Epoch 44 | steps 2288 | loss 0.4019 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8498 | val_bal_acc 0.8747 | val_auroc 0.9525
+Epoch 45 | steps 2340 | loss 0.3988 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8498 | val_bal_acc 0.8747 | val_auroc 0.9527
+Epoch 46 | steps 2392 | loss 0.3983 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8498 | val_bal_acc 0.8747 | val_auroc 0.9532
+Epoch 47 | steps 2444 | loss 0.3926 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8522 | val_bal_acc 0.8762 | val_auroc 0.9532
+Epoch 48 | steps 2496 | loss 0.4013 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8498 | val_bal_acc 0.8747 | val_auroc 0.9536
+Epoch 49 | steps 2548 | loss 0.3987 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8511 | val_bal_acc 0.8761 | val_auroc 0.9538
+Epoch 50 | steps 2600 | loss 0.3874 | val_n 289 | val_pos/neg 116/173 | val_f1 0.8498 | val_bal_acc 0.8747 | val_auroc 0.9543
+
+SELECTED VALIDATION THRESHOLD: 0.499502
+
+TEST METRICS
+n                   : 561
+positives           : 231
+negatives           : 330
+positive_rate       : 0.4118
+predicted_positives : 224
+predicted_negatives : 337
+tp                  : 173
+tn                  : 279
+fp                  : 51
+fn                  : 58
+acc                 : 0.8057
+balanced_acc        : 0.7972
+precision           : 0.7723
+recall              : 0.7489
+specificity         : 0.8455
+f1                  : 0.7604
+mcc                 : 0.5973
+auroc               : 0.8890
+average_precision   : 0.8821
+
+TEST METRICS @ SELECTED VALIDATION THRESHOLD
+n                   : 561
+positives           : 231
+negatives           : 330
+positive_rate       : 0.4118
+predicted_positives : 224
+predicted_negatives : 337
+tp                  : 173
+tn                  : 279
+fp                  : 51
+fn                  : 58
+acc                 : 0.8057
+balanced_acc        : 0.7972
+precision           : 0.7723
+recall              : 0.7489
+specificity         : 0.8455
+f1                  : 0.7604
+mcc                 : 0.5973
+auroc               : 0.8890
+average_precision   : 0.8821
+wandb: 
+wandb: Run history:
+wandb:                       epoch ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇▇██
+wandb:               final_val_acc ▁
+wandb:             final_val_auroc ▁
+wandb: final_val_average_precision ▁
+wandb:      final_val_balanced_acc ▁
+wandb:                final_val_f1 ▁
+wandb:                final_val_fn ▁
+wandb:                final_val_fp ▁
+wandb:               final_val_mcc ▁
+wandb:                 final_val_n ▁
+wandb:                         +70 ...
+wandb: 
+wandb: Run summary:
+wandb:                       epoch 50
+wandb:               final_val_acc 0.88581
+wandb:             final_val_auroc 0.94982
+wandb: final_val_average_precision 0.94231
+wandb:      final_val_balanced_acc 0.88474
+wandb:                final_val_f1 0.86076
+wandb:                final_val_fn 14
+wandb:                final_val_fp 19
+wandb:               final_val_mcc 0.76455
+wandb:                 final_val_n 289
+wandb:                         +70 ...
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /workspace/cruci-classifier/wandb/offline-run-20260614_234356-56x6ij1o
+wandb: Find logs at: ./wandb/offline-run-20260614_234356-56x6ij1o/logs
+Evaluating fullCP/Green with selected_threshold=0.4995022118091583
+EVALUATION METRICS
+n                   : 561
+positives           : 231
+negatives           : 330
+positive_rate       : 0.4118
+predicted_positives : 224
+predicted_negatives : 337
+tp                  : 173
+tn                  : 279
+fp                  : 51
+fn                  : 58
+acc                 : 0.8057
+balanced_acc        : 0.7972
+precision           : 0.7723
+recall              : 0.7489
+specificity         : 0.8455
+f1                  : 0.7604
+mcc                 : 0.5973
+auroc               : 0.8890
+average_precision   : 0.8821
+avg_precision      : 0.8821
+best_threshold (max F1): 0.4391
+HF upload attempt 1/3: /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/fullCP/Green -> jwang003/cruci-esm35m-grid/grid_esm35m_corrected_20260614/fullCP/Green
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[AProcessing Files (5 / 5)      : 100%|██████████|  113kB /  113kB, 10.9kB/s  
+New Data Upload               : 100%|██████████|  113kB /  113kB, 10.9kB/s  [A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[AProcessing Files (5 / 5)      : 100%|██████████|  113kB /  113kB, 10.2kB/s  
+New Data Upload               : 100%|██████████|  113kB /  113kB, 10.2kB/s  
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            
+https://huggingface.co/datasets/jwang003/cruci-esm35m-grid/commit/7b463fde35ce47178e96a28126c0241894891e0b
+Wrote /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/aggregate_metrics.csv rows=4
+Wrote /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/all_oof_predictions.csv rows=2089
+Wrote /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614/run_manifest.json
+HF upload attempt 1/3: /workspace/cruci-classifier/results/grid_esm35m_corrected_20260614 -> jwang003/cruci-esm35m-grid/grid_esm35m_corrected_20260614
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 10 files]                : 100%|██████████|  225kB /  225kB            [A[A[A[A[A[A[A[A[A[A[AProcessing Files (20 / 20)    : 100%|██████████|  444kB /  444kB,   ???B/s  
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 10 files]                : 100%|██████████|  255kB /  255kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 10 files]                : 100%|██████████|  225kB /  225kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 10 files]                : 100%|██████████|  265kB /  265kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A[A[A
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 10 files]                : 100%|██████████|  223kB /  223kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A[A[A
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A[A
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.2kB / 32.2kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 10 files]                : 100%|██████████|  255kB /  255kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A[A[A
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 10 files]                : 100%|██████████|  223kB /  223kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.7kB / 21.7kB            [A[A[A
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.6kB / 11.6kB            [A[A[A[A
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.8kB / 21.8kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.2kB / 11.2kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.5kB / 24.5kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.8kB / 11.8kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  ...test_confusion_matrix.png: 100%|██████████| 11.9kB / 11.9kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 10 files]                : 100%|██████████|  275kB /  275kB            [A[A[A[A[A[A[A[A[A[A[A
+
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A
+
+
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            [A[A[A[A
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            [A[A[A[A[A
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            [A[A[A[A[A[A
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+  [+ 10 files]                : 100%|██████████|  223kB /  223kB            [A[A[A[A[A[A[A[A[A[A[AProcessing Files (20 / 20)    : 100%|██████████|  444kB /  444kB, 41.2kB/s  
+New Data Upload               : |          |  0.00B /  0.00B,  0.00B/s  
+  .../checkpoints/best_head.pt: 100%|██████████| 22.1kB / 22.1kB            
+  .../checkpoints/best_head.pt: 100%|██████████| 21.9kB / 21.9kB            
+  .../test_score_histogram.png: 100%|██████████| 24.3kB / 24.3kB            
+  ...checkpoints/final_head.pt: 100%|██████████| 22.1kB / 22.1kB            
+  .../test_score_histogram.png: 100%|██████████| 22.0kB / 22.0kB            
+  ...recision_recall_curve.png: 100%|██████████| 33.1kB / 33.1kB            
+  ...recision_recall_curve.png: 100%|██████████| 32.4kB / 32.4kB            
+  ...checkpoints/final_head.pt: 100%|██████████| 21.9kB / 21.9kB            
+  .../test_score_histogram.png: 100%|██████████| 21.6kB / 21.6kB            
+  [+ 10 files]                : 100%|██████████|  223kB /  223kB            
+https://huggingface.co/datasets/jwang003/cruci-esm35m-grid/commit/27abf9dc7a0d406ffda2a6d3f6ede312d0b9ddad
+DONE corrected grid 2026-06-15T00:00:32+00:00
